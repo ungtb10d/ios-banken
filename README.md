@@ -13,9 +13,12 @@ the API.
 The easiest way to get up and running is to add the framework using the
 dependency manager [Carthage](https://github.com/Carthage/Carthage).
 
-Add the following to your [Cartfile](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile):
+After installing Carthage, add the following to your
+[Cartfile](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile):
 
     github "Sbanken/sbankenclient-ios"
+
+Run `carthage update` to build the dependencies.
 
 Add `$(SRCROOT)/Carthage/Build/iOS/SbankenClient.framework` to the
 Input Files of your Carthage copy-frameworks build step as well as
