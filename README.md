@@ -19,7 +19,7 @@ Add the following to your [Cartfile](https://github.com/Carthage/Carthage/blob/m
 
 Add `$(SRCROOT)/Carthage/Build/iOS/SbankenClient.framework` to the
 Input Files of your Carthage copy-frameworks build step as well as
-`$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Reachability.framework`
+`$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SbankenClient.framework`
 to the Output Files.
 
 ### Manual installation
