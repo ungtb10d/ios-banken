@@ -20,6 +20,10 @@ After installing Carthage, add the following to your
 
 Run `carthage update` to build the dependencies.
 
+Drag SbankenClient.framework from the Carthage/Build/iOS/ directory
+to the Linked Frameworks and Libraries section of your Xcode project’s
+General settings.
+
 Add `$(SRCROOT)/Carthage/Build/iOS/SbankenClient.framework` to the
 Input Files of your Carthage copy-frameworks build step as well as
 `$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SbankenClient.framework`
