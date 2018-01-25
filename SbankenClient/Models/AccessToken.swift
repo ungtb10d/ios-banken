@@ -24,7 +24,7 @@ public class AccessToken: Codable {
     }
     
     enum CodingKeys: String, CodingKey {
-        case accessToken = "token"
+        case accessToken = "access_token"
         case expiresIn = "expires_in"
         case tokenType = "token_type"
     }
