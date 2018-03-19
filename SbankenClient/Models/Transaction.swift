@@ -1,6 +1,6 @@
 //
 //  Transaction.swift
-//  SBankenClient
+//  SbankenClient
 //
 //  Created by Øyvind Tjervaag on 07/10/2017.
 //  Copyright © 2017 SBanken. All rights reserved.
