@@ -1,6 +1,6 @@
 //
 //  CardDetails.swift
-//  BankClient
+//  SBankenClient
 //
 //  Created by Øyvind Tjervaag on 19/03/2018.
 //  Copyright © 2018 SBanken. All rights reserved.
