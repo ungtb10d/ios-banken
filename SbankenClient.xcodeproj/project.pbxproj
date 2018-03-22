@@ -43,6 +43,8 @@
 		8B580FFA1FCCA3AD0079A2BC /* TransferResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B580FF81FCCA3AD0079A2BC /* TransferResponse.swift */; };
 		8B580FFC1FCCA63C0079A2BC /* TransferRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B580FFB1FCCA63C0079A2BC /* TransferRequest.swift */; };
 		8B580FFD1FCCA63C0079A2BC /* TransferRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B580FFB1FCCA63C0079A2BC /* TransferRequest.swift */; };
+		8BA9EAB1205FD63500677F16 /* CardDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA9EAB0205FD63500677F16 /* CardDetails.swift */; };
+		8BA9EAB2205FD63500677F16 /* CardDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA9EAB0205FD63500677F16 /* CardDetails.swift */; };
 		DF793C62200E2FA400BD8800 /* SbankenClientTransferTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF793C61200E2FA400BD8800 /* SbankenClientTransferTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -85,6 +87,7 @@
 		8B580FF41FCC9C090079A2BC /* AccountsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsResponse.swift; sourceTree = "<group>"; };
 		8B580FF81FCCA3AD0079A2BC /* TransferResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferResponse.swift; sourceTree = "<group>"; };
 		8B580FFB1FCCA63C0079A2BC /* TransferRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferRequest.swift; sourceTree = "<group>"; };
+		8BA9EAB0205FD63500677F16 /* CardDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetails.swift; sourceTree = "<group>"; };
 		DF793C61200E2FA400BD8800 /* SbankenClientTransferTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SbankenClientTransferTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -147,6 +150,7 @@
 				8B580FF41FCC9C090079A2BC /* AccountsResponse.swift */,
 				13DDFDAB1F8921EF009811A7 /* Transaction.swift */,
 				131491F01F8C9098000B91C2 /* TransactionResponse.swift */,
+				8BA9EAB0205FD63500677F16 /* CardDetails.swift */,
 				8B580FF21FCC9AC80079A2BC /* AccessToken.swift */,
 				8B580FF81FCCA3AD0079A2BC /* TransferResponse.swift */,
 				8B580FFB1FCCA63C0079A2BC /* TransferRequest.swift */,
@@ -161,6 +165,7 @@
 				138E9E5D1F88F7D3000F8A2E /* SbankenClientTests */,
 				130A32411F8AAB1F0005BCE2 /* WatchSbankenClient */,
 				138E9E511F88F7D3000F8A2E /* Products */,
+				8B6AC949201E6B6A002C3742 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -219,6 +224,13 @@
 				13FEBABB1F8FEDB6004526E0 /* MockError.swift */,
 			);
 			path = Mocks;
+			sourceTree = "<group>";
+		};
+		8B6AC949201E6B6A002C3742 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -382,6 +394,7 @@
 				130A32551F8AAB9B0005BCE2 /* Constants.swift in Sources */,
 				8B580FFA1FCCA3AD0079A2BC /* TransferResponse.swift in Sources */,
 				13ED8FF41F8D5C7000D8A7D0 /* Double+shortDisplayValue.swift in Sources */,
+				8BA9EAB2205FD63500677F16 /* CardDetails.swift in Sources */,
 				8B580FF61FCC9D210079A2BC /* AccessToken.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -402,6 +415,7 @@
 				137A2B731F88FCC2003BDEAC /* Constants.swift in Sources */,
 				8B580FF91FCCA3AD0079A2BC /* TransferResponse.swift in Sources */,
 				130FF6411F8A09DD00D25F48 /* String+urlParameters.swift in Sources */,
+				8BA9EAB1205FD63500677F16 /* CardDetails.swift in Sources */,
 				8B580FF31FCC9AC80079A2BC /* AccessToken.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

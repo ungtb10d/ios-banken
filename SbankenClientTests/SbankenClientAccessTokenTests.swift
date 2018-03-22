@@ -19,7 +19,7 @@ class SbankenClientAccessTokenTests: XCTestCase {
     
     var goodAccessTokenData = """
         {
-        "token": "TOKEN",
+        "access_token": "TOKEN",
         "expires_in": 12345,
         "token_type": "TYPE"
         }

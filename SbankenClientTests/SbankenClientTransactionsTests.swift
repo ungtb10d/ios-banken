@@ -19,28 +19,47 @@ class SbankenClientTransactionsTests: XCTestCase {
     
     var goodTransactionsData = """
     {
-    "availableItems": 22,
+    "availableItems": 2,
     "items": [{
-                "transactionId": "1001",
-                "customerId": "12345678901",
-                "accountNumber": "97100000000",
-                "otherAccountNumber": null,
-                "amount": -104.520,
-                "text": "Varekjøp",
-                "transactionType": "Varekjøp",
-                "registrationDate": null,
-                "accountingDate": "2017-10-14T00:00:00+02:00"
-            }, {
-                "transactionId": "1002",
-                "customerId": "12345678901",
-                "accountNumber": "97100000000",
-                "otherAccountNumber": null,
-                "amount": -122.350,
-                "text": "VISA",
-                "transactionType": "Bekreftet VISA",
-                "registrationDate": null,
-                "accountingDate": "2017-10-14T00:00:00+02:00"
-            }]
+            "transactionId": "0",
+            "accountingDate": "2018-03-17T00:00:00+01:00",
+            "interestDate": "2018-03-17T00:00:00+01:00",
+            "otherAccountNumberSpecified": false,
+            "amount": -10.000,
+            "text": "VISA",
+            "transactionType": "Bekreftet VISA",
+            "transactionTypeCode": 946,
+            "transactionTypeText": "",
+            "isReservation": true,
+            "cardDetailsSpecified": false
+        },
+        {
+            "transactionId": "43465574623452563456",
+            "accountingDate": "2018-03-13T00:00:00+01:00",
+            "interestDate": "2018-03-13T00:00:00+01:00",
+            "otherAccountNumberSpecified": false,
+            "amount": -149.000,
+            "text": "*0923 09.03 NOK 149.00 ITUNES.COM/BILL Kurs: 1.0000",
+            "transactionType": "VISA VARE",
+            "transactionTypeCode": 714,
+            "transactionTypeText": "VISA VARE",
+            "isReservation": false,
+            "reservationType": null,
+            "source": 1,
+            "cardDetails": {
+                "cardNumber": "*0123",
+                "currencyAmount": 149.000,
+                "currencyRate": 1.00000,
+                "merchantCategoryCode": "5735",
+                "merchantCategoryDescription": "Musikk",
+                "merchantCity": "ITUNES.COM/BI",
+                "merchantName": "ITUNES.COM/BILL",
+                "originalCurrencyCode": "NOK",
+                "purchaseDate": "2018-03-09T00:00:00+01:00",
+                "transactionId": "1234655513452435645"
+            },
+            "cardDetailsSpecified": true
+        }]
     }
     """.data(using: .utf8)
     
