@@ -69,7 +69,7 @@ public class SbankenClient: NSObject {
                 "endDate": formatter.string(from: endDate)
                 ] as [String : Any]
 
-            let urlString = "\(Constants.baseUrl)/Bank/api/v1/Transactions/\(userId)/\(accountNumber)"
+            let urlString = "\(Constants.baseUrl)/Bank/api/v2/Transactions/\(userId)/\(accountNumber)"
             guard let request = self.urlRequest(urlString, token: token!, parameters: parameters) else { return }
             
             self.urlSession.dataTask(with: request, completionHandler: { (data, response, error) in
