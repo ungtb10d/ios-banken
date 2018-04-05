@@ -85,7 +85,7 @@ class SbankenClientTransactionsTests: XCTestCase {
     func testClientQueriesForTransactions() {
         let request = transactionRequest(userId: defaultUserId, accountNumber: defaultAccountNumber)
         
-        XCTAssertEqual(request?.url?.path, "/Bank/api/v1/Transactions/\(defaultUserId)/\(defaultAccountNumber)")
+        XCTAssertEqual(request?.url?.path, "/Bank/api/v2/Transactions/\(defaultUserId)/\(defaultAccountNumber)")
     }
     
     func testTransactionRequestHasRequiredHeaders() {
@@ -95,14 +95,11 @@ class SbankenClientTransactionsTests: XCTestCase {
         XCTAssertEqual(request?.allHTTPHeaderFields!["Accept"], "application/json")
     }
     
-    
-    
     func testTransactionRequestReturnsNilForInvalidUrl() {
         let request = transactionRequest(userId: "|", accountNumber: defaultAccountNumber)
         
         XCTAssertNil(request)
     }
-    
     
     func testTransactionRequestReturnsErrorForBadData() {
         mockUrlSession.responseData = badTransactionsData
@@ -151,5 +148,4 @@ class SbankenClientTransactionsTests: XCTestCase {
         
         return mockUrlSession.lastRequest
     }
- 
 }
