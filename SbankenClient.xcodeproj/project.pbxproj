@@ -316,7 +316,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = SBanken;
 				TargetAttributes = {
 					130A323F1F8AAB1F0005BCE2 = {
@@ -382,20 +382,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				130A324F1F8AAB9B0005BCE2 /* String+urlParameters.swift in Sources */,
-				13ED8FF51F8D5C7800D8A7D0 /* TransactionResponse.swift in Sources */,
-				134239D01F9083C70099842A /* SURLSessionProtocol.swift in Sources */,
-				8B3DD8211F8D2BEF007761E3 /* AccessTokenManager.swift in Sources */,
+				8BA9EAB2205FD63500677F16 /* CardDetails.swift in Sources */,
 				130A32521F8AAB9B0005BCE2 /* Account.swift in Sources */,
 				130A32531F8AAB9B0005BCE2 /* Transaction.swift in Sources */,
-				8B580FFD1FCCA63C0079A2BC /* TransferRequest.swift in Sources */,
 				8B580FF71FCC9D350079A2BC /* AccountsResponse.swift in Sources */,
+				13ED8FF51F8D5C7800D8A7D0 /* TransactionResponse.swift in Sources */,
+				8B580FFD1FCCA63C0079A2BC /* TransferRequest.swift in Sources */,
+				8B580FFA1FCCA3AD0079A2BC /* TransferResponse.swift in Sources */,
+				8B580FF61FCC9D210079A2BC /* AccessToken.swift in Sources */,
+				130A324F1F8AAB9B0005BCE2 /* String+urlParameters.swift in Sources */,
+				134239D01F9083C70099842A /* SURLSessionProtocol.swift in Sources */,
+				8B3DD8211F8D2BEF007761E3 /* AccessTokenManager.swift in Sources */,
 				130A32541F8AAB9B0005BCE2 /* SbankenClient.swift in Sources */,
 				130A32551F8AAB9B0005BCE2 /* Constants.swift in Sources */,
-				8B580FFA1FCCA3AD0079A2BC /* TransferResponse.swift in Sources */,
 				13ED8FF41F8D5C7000D8A7D0 /* Double+shortDisplayValue.swift in Sources */,
-				8BA9EAB2205FD63500677F16 /* CardDetails.swift in Sources */,
-				8B580FF61FCC9D210079A2BC /* AccessToken.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,20 +403,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				138E9E6B1F88F83D000F8A2E /* SbankenClient.swift in Sources */,
-				131491F11F8C9098000B91C2 /* TransactionResponse.swift in Sources */,
-				134AF42E1F8BF80F00114652 /* AccessTokenManager.swift in Sources */,
+				8BA9EAB1205FD63500677F16 /* CardDetails.swift in Sources */,
 				137A2B711F88FA54003BDEAC /* Account.swift in Sources */,
-				13074D1B1F9081A800427720 /* SURLSessionProtocol.swift in Sources */,
 				13DDFDAC1F8921EF009811A7 /* Transaction.swift in Sources */,
+				131491F11F8C9098000B91C2 /* TransactionResponse.swift in Sources */,
 				8B580FFC1FCCA63C0079A2BC /* TransferRequest.swift in Sources */,
 				8B580FF51FCC9C090079A2BC /* AccountsResponse.swift in Sources */,
+				8B580FF91FCCA3AD0079A2BC /* TransferResponse.swift in Sources */,
+				8B580FF31FCC9AC80079A2BC /* AccessToken.swift in Sources */,
+				138E9E6B1F88F83D000F8A2E /* SbankenClient.swift in Sources */,
+				134AF42E1F8BF80F00114652 /* AccessTokenManager.swift in Sources */,
+				13074D1B1F9081A800427720 /* SURLSessionProtocol.swift in Sources */,
 				1355DF111F8D54AA005D4523 /* Double+shortDisplayValue.swift in Sources */,
 				137A2B731F88FCC2003BDEAC /* Constants.swift in Sources */,
-				8B580FF91FCCA3AD0079A2BC /* TransferResponse.swift in Sources */,
 				130FF6411F8A09DD00D25F48 /* String+urlParameters.swift in Sources */,
-				8BA9EAB1205FD63500677F16 /* CardDetails.swift in Sources */,
-				8B580FF31FCC9AC80079A2BC /* AccessToken.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,6 +463,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 3.0;
@@ -506,6 +507,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -513,6 +515,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -566,6 +569,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -573,6 +577,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -622,6 +627,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = no.internbank.SbankenClient;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
