@@ -11,6 +11,7 @@ import Foundation
 public class SbankenClient: NSObject {
     var clientId: String
     var secret: String
+    var userId: String
     
     var tokenManager: AccessTokenManager = AccessTokenManager()
     var urlSession: SURLSessionProtocol = URLSession.shared
@@ -24,19 +25,20 @@ public class SbankenClient: NSObject {
         return jsonEncoder
     }()
     
-    public init(clientId: String, secret: String) {
+    public init(clientId: String, secret: String, userId: String) {
         self.clientId = clientId
         self.secret = secret
+        self.userId = userId
     }
     
-    public func accounts(userId: String, success: @escaping ([Account]) -> Void, failure: @escaping (Error?) -> Void) {
+    public func accounts(success: @escaping ([Account]) -> Void, failure: @escaping (Error?) -> Void) {
         accessToken(clientId: clientId, secret: secret) { (token) in
             guard token != nil else {
                 failure(nil)
                 return
             }
             
-            let urlString = "\(Constants.baseUrl)/Bank/api/v1/Accounts/\(userId)"
+            let urlString = "\(Constants.baseUrl)/Bank/api/v1/Accounts"
             guard let request = self.urlRequest(urlString, token: token!) else { return }
             
             self.urlSession.dataTask(with: request, completionHandler: { (data, response, error) in
@@ -54,7 +56,7 @@ public class SbankenClient: NSObject {
         }
     }
     
-    public func transactions(userId: String, accountNumber: String, startDate: Date, endDate: Date = Date(), index: Int = 0, length: Int = 10, success: @escaping (TransactionResponse) -> Void, failure: @escaping (Error?) -> Void) {
+    public func transactions(accountId: String, startDate: Date, endDate: Date = Date(), index: Int = 0, length: Int = 10, success: @escaping (TransactionResponse) -> Void, failure: @escaping (Error?) -> Void) {
         accessToken(clientId: clientId, secret: secret) { (token) in
             guard token != nil else {
                 failure(nil)
@@ -69,7 +71,7 @@ public class SbankenClient: NSObject {
                 "endDate": formatter.string(from: endDate)
                 ] as [String : Any]
 
-            let urlString = "\(Constants.baseUrl)/Bank/api/v2/Transactions/\(userId)/\(accountNumber)"
+            let urlString = "\(Constants.baseUrl)/Bank/api/v1/Transactions/\(accountId)"
             guard let request = self.urlRequest(urlString, token: token!, parameters: parameters) else { return }
             
             self.urlSession.dataTask(with: request, completionHandler: { (data, response, error) in
@@ -87,14 +89,14 @@ public class SbankenClient: NSObject {
         }
     }
     
-    public func transfer(userId: String, fromAccount: String, toAccount: String, message: String, amount: Float, success: @escaping (TransferResponse) -> Void, failure: @escaping (Error?) -> Void) {
+    public func transfer(fromAccount: String, toAccount: String, message: String, amount: Float, success: @escaping (TransferResponse) -> Void, failure: @escaping (Error?) -> Void) {
         accessToken(clientId: clientId, secret: secret) { (token) in
             guard token != nil else {
                 failure(nil)
                 return
             }
             
-            let urlString = "\(Constants.baseUrl)/Bank/api/v1/Transfers/\(userId)"
+            let urlString = "\(Constants.baseUrl)/Bank/api/v1/Transfers"
             guard var request = self.urlRequest(urlString, token: token!) else { return }
             
             let transferRequest = TransferRequest(fromAccount: fromAccount, toAccount: toAccount, message: message, amount: amount)
@@ -141,6 +143,7 @@ public class SbankenClient: NSObject {
         var request = URLRequest(url: url)
         request.setValue("Bearer \(token.accessToken)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue(self.userId, forHTTPHeaderField: "CustomerID")
         
         return request
     }
