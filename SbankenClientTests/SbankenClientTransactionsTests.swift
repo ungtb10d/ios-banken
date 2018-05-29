@@ -14,6 +14,7 @@ class SbankenClientTransactionsTests: XCTestCase {
     var mockTokenManager = AccessTokenManager()
     var defaultUserId = "12345"
     var defaultAccountNumber = "97100000000"
+    var defaultAccountId = "0001"
     var defaultAccessToken: AccessToken = AccessToken("TOKEN", expiresIn: 1000, tokenType: "TYPE")
     var client: SbankenClient?
     
@@ -85,7 +86,7 @@ class SbankenClientTransactionsTests: XCTestCase {
     func testClientQueriesForTransactions() {
         let request = transactionRequest(userId: defaultUserId, accountNumber: defaultAccountNumber)
         
-        XCTAssertEqual(request?.url?.path, "/Bank/api/v2/Transactions/\(defaultUserId)/\(defaultAccountNumber)")
+        XCTAssertEqual(request?.url?.path, "/Bank/api/v1/Transactions/\(defaultAccountId)")
     }
     
     func testTransactionRequestHasRequiredHeaders() {
@@ -93,6 +94,7 @@ class SbankenClientTransactionsTests: XCTestCase {
         
         XCTAssertEqual(request?.allHTTPHeaderFields!["Authorization"], "Bearer \(defaultAccessToken.accessToken)")
         XCTAssertEqual(request?.allHTTPHeaderFields!["Accept"], "application/json")
+        XCTAssertEqual(request?.allHTTPHeaderFields!["CustomerID"], defaultUserId)
     }
     
     func testTransactionRequestReturnsNilForInvalidUrl() {
@@ -140,7 +142,7 @@ class SbankenClientTransactionsTests: XCTestCase {
                             accountNumber: String,
                             success: @escaping (TransactionResponse) -> Void = {_ in },
                             failure: @escaping (Error?) -> Void = {_ in }) -> URLRequest? {
-        client?.transactions(userId: userId, accountNumber: "97100000000", startDate: Date(), endDate: Date(), index: 0, length: 10, success: { (transactionResponse) in
+        client?.transactions(userId: userId, accountId: "0001", startDate: Date(), endDate: Date(), index: 0, length: 10, success: { (transactionResponse) in
             success(transactionResponse)
         }, failure: { (error) in
             failure(error)

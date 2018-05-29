@@ -67,7 +67,7 @@ class SbankenClientAccountsTests: XCTestCase {
     func testClientQueriesForAccounts() {
         let request = accountRequest(userId: defaultUserId)
         
-        XCTAssertEqual(request?.url?.path, "/Bank/api/v1/Accounts/\(defaultUserId)")
+        XCTAssertEqual(request?.url?.path, "/Bank/api/v1/Accounts")
     }
     
     func testAccountRequestHasRequiredHeaders() {
@@ -75,6 +75,7 @@ class SbankenClientAccountsTests: XCTestCase {
         
         XCTAssertEqual(request?.allHTTPHeaderFields!["Authorization"], "Bearer \(defaultAccessToken)")
         XCTAssertEqual(request?.allHTTPHeaderFields!["Accept"], "application/json")
+        XCTAssertEqual(request?.allHTTPHeaderFields!["CustomerID"], defaultUserId)
     }
     
     func testAccountRequestReturnsNilForInvalidUrl() {
