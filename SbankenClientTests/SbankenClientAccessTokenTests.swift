@@ -35,14 +35,12 @@ class SbankenClientAccessTokenTests: XCTestCase {
             "items":
             [{
             "accountNumber": "12345678901",
-            "customerId": "12345",
             "ownerCustomerId": "12345",
             "name": "Generell konto",
             "accountType": "Konto",
             "available": 100.0,
             "balance": 1200.0,
-            "creditLimit": 500.0,
-            "defaultAccount": true
+            "creditLimit": 500.0
             }]
         }
     """.data(using: .utf8)
