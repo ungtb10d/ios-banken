@@ -21,6 +21,7 @@ class SbankenClientAccountsTests: XCTestCase {
             "availableItems": 1,
             "items":
             [{
+            "accountId": "00000000-0000-0000-0000-000000000000",
             "accountNumber": "12345678901",
             "customerId": "12345",
             "ownerCustomerId": "12345",
@@ -76,12 +77,6 @@ class SbankenClientAccountsTests: XCTestCase {
         XCTAssertEqual(request?.allHTTPHeaderFields!["Authorization"], "Bearer \(defaultAccessToken)")
         XCTAssertEqual(request?.allHTTPHeaderFields!["Accept"], "application/json")
         XCTAssertEqual(request?.allHTTPHeaderFields!["CustomerID"], defaultUserId)
-    }
-    
-    func testAccountRequestReturnsNilForInvalidUrl() {
-        let request = accountRequest(userId: "|")
-        
-        XCTAssertNil(request)
     }
     
     func testAccountRequestReturnsErrorForBadData() {

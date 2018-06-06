@@ -60,12 +60,6 @@ class SbankenClientTransferTests: XCTestCase {
         XCTAssertEqual(request?.allHTTPHeaderFields!["Accept"], "application/json")
     }
     
-    func testTransferRequestReturnsNilForInvalidUrl() {
-        let request = transferRequest(userId: "|")
-        
-        XCTAssertNil(request)
-    }
-    
     func testTransferRequestReturnsErrorForBadData() {
         mockUrlSession.responseData = badTransferResponseData
         let errorExpectation = expectation(description: "Error occurred")

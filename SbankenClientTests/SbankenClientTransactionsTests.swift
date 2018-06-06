@@ -97,12 +97,6 @@ class SbankenClientTransactionsTests: XCTestCase {
         XCTAssertEqual(request?.allHTTPHeaderFields!["CustomerID"], defaultUserId)
     }
     
-    func testTransactionRequestReturnsNilForInvalidUrl() {
-        let request = transactionRequest(userId: "|", accountNumber: defaultAccountNumber)
-        
-        XCTAssertNil(request)
-    }
-    
     func testTransactionRequestReturnsErrorForBadData() {
         mockUrlSession.responseData = badTransactionsData
         var error = false

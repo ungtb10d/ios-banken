@@ -34,6 +34,7 @@ class SbankenClientAccessTokenTests: XCTestCase {
             "availableItems": 1,
             "items":
             [{
+            "accountId": "00000000-0000-0000-0000-000000000000",
             "accountNumber": "12345678901",
             "ownerCustomerId": "12345",
             "name": "Generell konto",
