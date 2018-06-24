@@ -34,15 +34,14 @@ class SbankenClientAccessTokenTests: XCTestCase {
             "availableItems": 1,
             "items":
             [{
+            "accountId": "00000000-0000-0000-0000-000000000000",
             "accountNumber": "12345678901",
-            "customerId": "12345",
             "ownerCustomerId": "12345",
             "name": "Generell konto",
             "accountType": "Konto",
             "available": 100.0,
             "balance": 1200.0,
-            "creditLimit": 500.0,
-            "defaultAccount": true
+            "creditLimit": 500.0
             }]
         }
     """.data(using: .utf8)
@@ -100,7 +99,7 @@ class SbankenClientAccessTokenTests: XCTestCase {
         client?.tokenManager.token = AccessToken("TOKEN", expiresIn: -1000, tokenType: "TYPE")
         var error = false
         _ = client?.transactions(userId: defaultUserId,
-                                 accountNumber: "97100000000",
+                                 accountId: "0001",
                                  startDate: Date(),
                                  endDate: Date(),
                                  index: 0,
@@ -117,7 +116,9 @@ class SbankenClientAccessTokenTests: XCTestCase {
         mockUrlSession.tokenResponseData = goodAccessTokenData
         mockUrlSession.responseData = goodAccountData
         var error = false
-        _ = client?.accounts(userId: defaultUserId, success: { _ in }, failure: { _ in
+        _ = client?.accounts(userId: defaultUserId, success: { _ in
+            error = false
+        }, failure: { _ in
             error = true
         })
         

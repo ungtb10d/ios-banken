@@ -50,7 +50,7 @@ class SbankenClientTransferTests: XCTestCase {
     func testClientQueriesForTransfer() {
         let request = transferRequest(userId: defaultUserId)
         
-        XCTAssertEqual(request?.url?.path, "/Bank/api/v1/Transfers/\(defaultUserId)")
+        XCTAssertEqual(request?.url?.path, "/Bank/api/v1/Transfers")
     }
     
     func testTransferRequestHasRequiredHeaders() {
@@ -58,12 +58,6 @@ class SbankenClientTransferTests: XCTestCase {
         
         XCTAssertEqual(request?.allHTTPHeaderFields!["Authorization"], "Bearer \(defaultAccessToken)")
         XCTAssertEqual(request?.allHTTPHeaderFields!["Accept"], "application/json")
-    }
-    
-    func testTransferRequestReturnsNilForInvalidUrl() {
-        let request = transferRequest(userId: "|")
-        
-        XCTAssertNil(request)
     }
     
     func testTransferRequestReturnsErrorForBadData() {
