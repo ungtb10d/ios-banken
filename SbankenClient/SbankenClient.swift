@@ -163,7 +163,7 @@ public class SbankenClient: NSObject {
         let credentialData = "\(encodedClientId!):\(encodedsecret!)".data(using: .utf8)!
         let encodedCredentials = credentialData.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0))
         
-        let url = URL(string: "\(Constants.baseUrl)/identityserver/connect/token")
+        let url = URL(string: "\(Constants.baseAuthUrl)/identityserver/connect/token")
         var request = URLRequest(url: url!)
         
         [
