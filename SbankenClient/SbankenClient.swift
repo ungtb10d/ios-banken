@@ -89,7 +89,7 @@ public class SbankenClient: NSObject {
         }
     }
     
-    public func transfer(userId: String, fromAccount: String, toAccount: String, message: String, amount: Float, success: @escaping (TransferResponse) -> Void, failure: @escaping (Error?) -> Void) {
+    public func transfer(userId: String, fromAccountId: String, toAccountId: String, message: String, amount: Float, success: @escaping (TransferResponse) -> Void, failure: @escaping (Error?) -> Void) {
         accessToken(clientId: clientId, secret: secret) { (token) in
             guard token != nil else {
                 failure(nil)
@@ -99,7 +99,7 @@ public class SbankenClient: NSObject {
             let urlString = "\(Constants.baseUrl)/Bank/api/v1/Transfers"
             guard var request = self.urlRequest(urlString, token: token!) else { return }
             
-            let transferRequest = TransferRequest(fromAccount: fromAccount, toAccount: toAccount, message: message, amount: amount)
+            let transferRequest = TransferRequest(fromAccountId: fromAccountId, toAccountId: toAccountId, message: message, amount: amount)
             
             request.httpMethod = "POST"
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -122,6 +122,44 @@ public class SbankenClient: NSObject {
                         failure(nil)
                     } else {
                         success(transferResponse)
+                    }
+                } else {
+                    failure(nil)
+                }
+            }).resume()
+        }
+    }
+    
+    public func eFakturas(userId: String, status: String, startDate: Date, endDate: Date = Date(), length: Int = 100, index: Int = 0, success: @escaping (EFakturasResponse) -> Void, failure: @escaping (Error?) -> Void) {
+        accessToken(clientId: clientId, secret: secret) { (token) in
+            guard token != nil else {
+                failure(nil)
+                return
+            }
+            
+            let urlString = "\(Constants.baseUrl)/Bank/api/v1/Accounts"
+            let formatter = ISO8601DateFormatter()
+            let parameters = [
+                "index": "\(index)",
+                "length": "\(length)",
+                "startDate": formatter.string(from: startDate),
+                "endDate": formatter.string(from: endDate)
+                ] as [String : Any]
+            
+            guard var request = self.urlRequest(urlString, token: token!, parameters: parameters) else { return }
+            request.setValue(userId, forHTTPHeaderField: "CustomerID")
+            
+            self.urlSession.dataTask(with: request, completionHandler: { (data, response, error) in
+                guard data != nil, error == nil else {
+                    failure(error)
+                    return
+                }
+                
+                if let eFakturasResponse = try? self.decoder.decode(EFakturasResponse.self, from: data!) {
+                    if eFakturasResponse.isError {
+                        failure(nil)
+                    } else {
+                        success(eFakturasResponse)
                     }
                 } else {
                     failure(nil)
@@ -163,7 +201,7 @@ public class SbankenClient: NSObject {
         let credentialData = "\(encodedClientId!):\(encodedsecret!)".data(using: .utf8)!
         let encodedCredentials = credentialData.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0))
         
-        let url = URL(string: "\(Constants.baseUrl)/identityserver/connect/token")
+        let url = URL(string: "\(Constants.baseAuthUrl)/identityserver/connect/token")
         var request = URLRequest(url: url!)
         
         [

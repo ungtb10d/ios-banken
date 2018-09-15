@@ -45,6 +45,14 @@
 		8B580FFD1FCCA63C0079A2BC /* TransferRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B580FFB1FCCA63C0079A2BC /* TransferRequest.swift */; };
 		8BA9EAB1205FD63500677F16 /* CardDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA9EAB0205FD63500677F16 /* CardDetails.swift */; };
 		8BA9EAB2205FD63500677F16 /* CardDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA9EAB0205FD63500677F16 /* CardDetails.swift */; };
+		8BC1A89E212C63C200BD0657 /* EFaktura.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC1A89D212C63C200BD0657 /* EFaktura.swift */; };
+		8BC1A89F212C63C200BD0657 /* EFaktura.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC1A89D212C63C200BD0657 /* EFaktura.swift */; };
+		8BC1A8A1212C655400BD0657 /* EFakturasResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC1A8A0212C655400BD0657 /* EFakturasResponse.swift */; };
+		8BC1A8A2212C655400BD0657 /* EFakturasResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC1A8A0212C655400BD0657 /* EFakturasResponse.swift */; };
+		8BC1A8A4212C701500BD0657 /* EFakturaPaymentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC1A8A3212C701500BD0657 /* EFakturaPaymentRequest.swift */; };
+		8BC1A8A5212C701500BD0657 /* EFakturaPaymentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC1A8A3212C701500BD0657 /* EFakturaPaymentRequest.swift */; };
+		8BC1A8A7212C709500BD0657 /* EFakturaPaymentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC1A8A6212C709500BD0657 /* EFakturaPaymentResponse.swift */; };
+		8BC1A8A8212C709500BD0657 /* EFakturaPaymentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC1A8A6212C709500BD0657 /* EFakturaPaymentResponse.swift */; };
 		DF793C62200E2FA400BD8800 /* SbankenClientTransferTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF793C61200E2FA400BD8800 /* SbankenClientTransferTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -88,6 +96,10 @@
 		8B580FF81FCCA3AD0079A2BC /* TransferResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferResponse.swift; sourceTree = "<group>"; };
 		8B580FFB1FCCA63C0079A2BC /* TransferRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferRequest.swift; sourceTree = "<group>"; };
 		8BA9EAB0205FD63500677F16 /* CardDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetails.swift; sourceTree = "<group>"; };
+		8BC1A89D212C63C200BD0657 /* EFaktura.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFaktura.swift; sourceTree = "<group>"; };
+		8BC1A8A0212C655400BD0657 /* EFakturasResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFakturasResponse.swift; sourceTree = "<group>"; };
+		8BC1A8A3212C701500BD0657 /* EFakturaPaymentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFakturaPaymentRequest.swift; sourceTree = "<group>"; };
+		8BC1A8A6212C709500BD0657 /* EFakturaPaymentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFakturaPaymentResponse.swift; sourceTree = "<group>"; };
 		DF793C61200E2FA400BD8800 /* SbankenClientTransferTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SbankenClientTransferTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -154,6 +166,10 @@
 				8B580FF21FCC9AC80079A2BC /* AccessToken.swift */,
 				8B580FF81FCCA3AD0079A2BC /* TransferResponse.swift */,
 				8B580FFB1FCCA63C0079A2BC /* TransferRequest.swift */,
+				8BC1A89D212C63C200BD0657 /* EFaktura.swift */,
+				8BC1A8A0212C655400BD0657 /* EFakturasResponse.swift */,
+				8BC1A8A3212C701500BD0657 /* EFakturaPaymentRequest.swift */,
+				8BC1A8A6212C709500BD0657 /* EFakturaPaymentResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -385,11 +401,15 @@
 				8BA9EAB2205FD63500677F16 /* CardDetails.swift in Sources */,
 				130A32521F8AAB9B0005BCE2 /* Account.swift in Sources */,
 				130A32531F8AAB9B0005BCE2 /* Transaction.swift in Sources */,
+				8BC1A8A2212C655400BD0657 /* EFakturasResponse.swift in Sources */,
 				8B580FF71FCC9D350079A2BC /* AccountsResponse.swift in Sources */,
 				13ED8FF51F8D5C7800D8A7D0 /* TransactionResponse.swift in Sources */,
 				8B580FFD1FCCA63C0079A2BC /* TransferRequest.swift in Sources */,
 				8B580FFA1FCCA3AD0079A2BC /* TransferResponse.swift in Sources */,
+				8BC1A89F212C63C200BD0657 /* EFaktura.swift in Sources */,
 				8B580FF61FCC9D210079A2BC /* AccessToken.swift in Sources */,
+				8BC1A8A8212C709500BD0657 /* EFakturaPaymentResponse.swift in Sources */,
+				8BC1A8A5212C701500BD0657 /* EFakturaPaymentRequest.swift in Sources */,
 				130A324F1F8AAB9B0005BCE2 /* String+urlParameters.swift in Sources */,
 				134239D01F9083C70099842A /* SURLSessionProtocol.swift in Sources */,
 				8B3DD8211F8D2BEF007761E3 /* AccessTokenManager.swift in Sources */,
@@ -406,11 +426,15 @@
 				8BA9EAB1205FD63500677F16 /* CardDetails.swift in Sources */,
 				137A2B711F88FA54003BDEAC /* Account.swift in Sources */,
 				13DDFDAC1F8921EF009811A7 /* Transaction.swift in Sources */,
+				8BC1A8A1212C655400BD0657 /* EFakturasResponse.swift in Sources */,
 				131491F11F8C9098000B91C2 /* TransactionResponse.swift in Sources */,
 				8B580FFC1FCCA63C0079A2BC /* TransferRequest.swift in Sources */,
 				8B580FF51FCC9C090079A2BC /* AccountsResponse.swift in Sources */,
 				8B580FF91FCCA3AD0079A2BC /* TransferResponse.swift in Sources */,
+				8BC1A89E212C63C200BD0657 /* EFaktura.swift in Sources */,
 				8B580FF31FCC9AC80079A2BC /* AccessToken.swift in Sources */,
+				8BC1A8A7212C709500BD0657 /* EFakturaPaymentResponse.swift in Sources */,
+				8BC1A8A4212C701500BD0657 /* EFakturaPaymentRequest.swift in Sources */,
 				138E9E6B1F88F83D000F8A2E /* SbankenClient.swift in Sources */,
 				134AF42E1F8BF80F00114652 /* AccessTokenManager.swift in Sources */,
 				13074D1B1F9081A800427720 /* SURLSessionProtocol.swift in Sources */,
