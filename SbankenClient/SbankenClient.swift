@@ -137,7 +137,7 @@ public class SbankenClient: NSObject {
                 return
             }
             
-            let urlString = "\(Constants.baseUrl)/Bank/api/v1/Accounts"
+            let urlString = "\(Constants.baseUrl)/Bank/api/v1/EFakturas"
             let formatter = ISO8601DateFormatter()
             let parameters = [
                 "index": "\(index)",
@@ -155,11 +155,55 @@ public class SbankenClient: NSObject {
                     return
                 }
                 
-                if let eFakturasResponse = try? self.decoder.decode(EFakturasResponse.self, from: data!) {
+                let stringData = String(data: (data as Data?)!, encoding: .utf8)
+                let fixedString = stringData?.replacingOccurrences(of: "00:00:00", with: "00:00:00Z").data(using: .utf8)
+                
+                if let eFakturasResponse = try? self.decoder.decode(EFakturasResponse.self, from: fixedString!) {
                     if eFakturasResponse.isError {
                         failure(nil)
                     } else {
                         success(eFakturasResponse)
+                    }
+                } else {
+                    failure(nil)
+                }
+            }).resume()
+        }
+    }
+    
+    public func payEFaktura(userId: String, eFakturaId: String, fromAccountId: String, payMinimumAmount: Bool, success: @escaping (EFakturaPaymentResponse) -> Void, failure: @escaping (Error?) -> Void) {
+        accessToken(clientId: clientId, secret: secret) { (token) in
+            guard token != nil else {
+                failure(nil)
+                return
+            }
+            
+            let urlString = "\(Constants.baseUrl)/Bank/api/v1/EFakturas"
+            guard var request = self.urlRequest(urlString, token: token!) else { return }
+            
+            let paymentRequest = EFakturaPaymentRequest(eFakturaId: eFakturaId, accountId: fromAccountId, payOnlyMinimumAmount: payMinimumAmount)
+            
+            request.httpMethod = "POST"
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.setValue(userId, forHTTPHeaderField: "CustomerID")
+            
+            if let body = try? self.encoder.encode(paymentRequest) {
+                request.httpBody = body
+            } else {
+                failure(nil)
+            }
+            
+            self.urlSession.dataTask(with: request, completionHandler: { (data, response, error) in
+                guard data != nil, error == nil else {
+                    failure(error)
+                    return
+                }
+                
+                if let paymentResponse = try? self.decoder.decode(EFakturaPaymentResponse.self, from: data!) {
+                    if paymentResponse.isError {
+                        failure(nil)
+                    } else {
+                        success(paymentResponse)
                     }
                 } else {
                     failure(nil)

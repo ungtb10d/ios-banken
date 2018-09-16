@@ -12,8 +12,8 @@ public struct EFakturasResponse: Codable {
     public var availableItems: Int
     public var items: [EFaktura]
     
-    public var errorType: String
+    public var errorType: String?
     public var isError: Bool
-    public var errorMessage: String
-    public var traceId: String
+    public var errorMessage: String?
+    public var traceId: String?
 }
