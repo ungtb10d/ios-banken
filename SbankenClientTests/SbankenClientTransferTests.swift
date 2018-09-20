@@ -63,7 +63,7 @@ class SbankenClientTransferTests: XCTestCase {
     func testTransferRequestReturnsErrorForBadData() {
         mockUrlSession.responseData = badTransferResponseData
         let errorExpectation = expectation(description: "Error occurred")
-        _ = transferRequest(userId: defaultUserId, success: { _ in }, failure: { (returnedError) in
+        _ = transferRequest(userId: defaultUserId, success: { _ in }, failure: { _ in
             XCTAssert(true, "Error occurred")
             errorExpectation.fulfill()
         })
@@ -74,7 +74,7 @@ class SbankenClientTransferTests: XCTestCase {
     func testTransferRequestReturnsErrorForErrorResponse() {
         mockUrlSession.responseData = errorTransferResponseData
         let errorExpectation = expectation(description: "Error occurred")
-        _ = transferRequest(userId: defaultUserId, success: { _ in }, failure: { (returnedError) in
+        _ = transferRequest(userId: defaultUserId, success: { _ in }, failure: { _ in
             XCTAssert(true, "Error occurred")
             errorExpectation.fulfill()
         })
@@ -88,7 +88,7 @@ class SbankenClientTransferTests: XCTestCase {
         _ = transferRequest(userId: defaultUserId, success: { (response) in
             XCTAssertNotNil(response)
             returnExpectation.fulfill()
-        }, failure: { (returnedError) in
+        }, failure: { _ in
             XCTFail("Error should not occur")
             returnExpectation.fulfill()
         })
@@ -98,7 +98,7 @@ class SbankenClientTransferTests: XCTestCase {
     
     func testTransferRequestDoesNotFail() {
         let errorExpectation = expectation(description: "Error occurred")
-        _ = transferRequest(userId: defaultUserId, success: { _ in }, failure: { (returnedError) in
+        _ = transferRequest(userId: defaultUserId, success: { _ in }, failure: { _ in
             XCTAssert(true, "Error occurred")
             errorExpectation.fulfill()
         })
@@ -109,7 +109,7 @@ class SbankenClientTransferTests: XCTestCase {
     func testTransferRequestReturnsErrorForHttpError() {
         mockUrlSession.responseError = NSError(domain: "error", code: 0, userInfo: nil)
         let errorExpectation = expectation(description: "Error occurred")
-        _ = transferRequest(userId: defaultUserId, success: { _ in }, failure: { (returnedError) in
+        _ = transferRequest(userId: defaultUserId, success: { _ in }, failure: { _ in
             XCTAssert(true, "Error occurred")
             errorExpectation.fulfill()
         })
@@ -117,13 +117,13 @@ class SbankenClientTransferTests: XCTestCase {
         waitForExpectations(timeout: 10)
     }
     
-    func transferRequest(userId: String, fromAccount: String = "1234", toAccount: String = "5678",
+    func transferRequest(userId: String, fromAccountId: String = "1234", toAccountId: String = "5678",
                          message: String = "MESSAGE", amount: Float = 10.0,
                          success: @escaping (TransferResponse) -> Void = {_ in },
                          failure: @escaping (Error?) -> Void = {_ in }) -> URLRequest? {
         client?.transfer(userId: userId,
-                         fromAccount: fromAccount,
-                         toAccount: toAccount,
+                         fromAccountId: fromAccountId,
+                         toAccountId: toAccountId,
                          message: message,
                          amount: amount,
                          success: success,
@@ -132,4 +132,3 @@ class SbankenClientTransferTests: XCTestCase {
         return mockUrlSession.lastRequest
     }
 }
-

@@ -110,8 +110,6 @@ class SbankenClientAccessTokenTests: XCTestCase {
         XCTAssertTrue(error)
     }
     
-    
-    
     func testTokenRequestReturnsSuccessForGoodData() {
         mockUrlSession.tokenResponseData = goodAccessTokenData
         mockUrlSession.responseData = goodAccountData

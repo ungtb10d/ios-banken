@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct AccountsResponse : Codable {
+public struct AccountsResponse: Codable {
     public var availableItems: Int
     public var items: [Account]
 }

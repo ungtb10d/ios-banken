@@ -40,4 +40,3 @@ class AccessTokenManagerTests: XCTestCase {
         super.tearDown()
     }
 }
-

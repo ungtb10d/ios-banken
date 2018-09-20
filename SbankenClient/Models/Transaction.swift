@@ -19,9 +19,10 @@ public class Transaction: Codable {
     public let transactionTypeCode: Int?
     public let transactionTypeText: String?
     public let isReservation: Bool
-    // public let reservationType: Int? // TODO The API sends back an Int now. Known bug. Fix this when the API is fixed.
-    // public let source: String? // TODO The API sends back an Int now. Known bug. Fix this when the API is fixed.
+    // TODO The API sends back an Int now. Known bug. Fix this when the API is fixed.
+    // public let reservationType: Int?
+    // TODO The API sends back an Int now. Known bug. Fix this when the API is fixed.
+    // public let source: String?
     public let cardDetailsSpecified: Bool
     public let cardDetails: CardDetails?
 }
-
