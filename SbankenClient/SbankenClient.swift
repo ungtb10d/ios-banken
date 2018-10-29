@@ -13,13 +13,13 @@ open class SbankenClient: NSObject {
     var secret: String?
     
     public var tokenManager: AccessTokenManager = AccessTokenManager()
-    var urlSession: SURLSessionProtocol = URLSession.shared
-    var decoder: JSONDecoder = {
+    public var urlSession: SURLSessionProtocol = URLSession.shared
+    public var decoder: JSONDecoder = {
         let jsonDecoder = JSONDecoder()
         jsonDecoder.dateDecodingStrategy = .iso8601
         return jsonDecoder
     }()
-    var encoder: JSONEncoder = {
+    public var encoder: JSONEncoder = {
         let jsonEncoder = JSONEncoder()
         return jsonEncoder
     }()
