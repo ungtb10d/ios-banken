@@ -130,7 +130,7 @@ open class SbankenClient: NSObject {
         }
     }
     
-    private func urlRequest(_ urlString: String, token: AccessToken, parameters: [String: Any]) -> URLRequest? {
+    public func urlRequest(_ urlString: String, token: AccessToken, parameters: [String: Any]) -> URLRequest? {
         guard var request = urlRequest(urlString, token: token) else { return nil }
         guard let originalUrl = request.url?.absoluteString else { return nil }
         
@@ -139,7 +139,7 @@ open class SbankenClient: NSObject {
         return request
     }
     
-    private func urlRequest(_ urlString: String, token: AccessToken) -> URLRequest? {
+    public func urlRequest(_ urlString: String, token: AccessToken) -> URLRequest? {
         guard let url = URL(string: urlString) else { return nil }
         var request = URLRequest(url: url)
         request.setValue("Bearer \(token.accessToken)", forHTTPHeaderField: "Authorization")
