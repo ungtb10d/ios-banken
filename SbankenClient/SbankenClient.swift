@@ -9,8 +9,8 @@
 import Foundation
 
 open class SbankenClient: NSObject {
-    var clientId: String
-    var secret: String
+    var clientId: String?
+    var secret: String?
     
     public var tokenManager: AccessTokenManager = AccessTokenManager()
     var urlSession: SURLSessionProtocol = URLSession.shared
@@ -24,7 +24,7 @@ open class SbankenClient: NSObject {
         return jsonEncoder
     }()
     
-    public init(clientId: String, secret: String) {
+    public init(clientId: String?, secret: String?) {
         self.clientId = clientId
         self.secret = secret
     }
