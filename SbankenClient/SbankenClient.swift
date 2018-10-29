@@ -8,11 +8,11 @@
 
 import Foundation
 
-public class SbankenClient: NSObject {
+open class SbankenClient: NSObject {
     var clientId: String
     var secret: String
     
-    var tokenManager: AccessTokenManager = AccessTokenManager()
+    public var tokenManager: AccessTokenManager = AccessTokenManager()
     var urlSession: SURLSessionProtocol = URLSession.shared
     var decoder: JSONDecoder = {
         let jsonDecoder = JSONDecoder()
@@ -148,11 +148,13 @@ public class SbankenClient: NSObject {
         return request
     }
     
-    private func accessToken(clientId: String, secret: String, completion: @escaping (AccessToken?) -> Void) {
+    open func accessToken(clientId: String?, secret: String?, completion: @escaping (AccessToken?) -> Void) {
         if tokenManager.token != nil {
             completion(tokenManager.token!)
             return
         }
+        
+        guard let clientId = clientId, let secret = secret else { return }
         
         let characterSet = NSMutableCharacterSet.alphanumeric()
         characterSet.addCharacters(in: "-_.!~*'()")

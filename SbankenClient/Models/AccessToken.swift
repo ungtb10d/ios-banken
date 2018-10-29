@@ -17,7 +17,7 @@ public class AccessToken: Codable {
         return Calendar.current.date(byAdding: .second, value: expiresIn, to: Date())!
     }()
     
-    init(_ accessToken: String, expiresIn: Int, tokenType: String) {
+    public init(_ accessToken: String, expiresIn: Int, tokenType: String) {
         self.accessToken = accessToken
         self.expiresIn = expiresIn
         self.tokenType = tokenType
