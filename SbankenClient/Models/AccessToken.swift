@@ -14,7 +14,7 @@ public class AccessToken: Codable {
     public var tokenType: String
     
     lazy var expiryDate: Date = {
-        return Calendar.current.date(byAdding: .second, value: expiresIn, to: Date())!
+        Calendar.current.date(byAdding: .second, value: expiresIn, to: Date())!
     }()
     
     public init(_ accessToken: String, expiresIn: Int, tokenType: String) {

@@ -68,7 +68,7 @@ class SbankenClientAccessTokenTests: XCTestCase {
     }
     
     func testAccountsGetsTokenFromManager() {
-        _ = client?.accounts(userId: defaultUserId, success: { _ in }, failure: { _,_  in })
+        _ = client?.accounts(userId: defaultUserId, success: { _ in }, failure: { _, _  in })
         let request = mockUrlSession.lastRequest
         XCTAssertEqual(request?.url?.path, "/identityserver/connect/token")
         XCTAssertEqual(request?.httpMethod, "POST")
@@ -77,7 +77,7 @@ class SbankenClientAccessTokenTests: XCTestCase {
     func testTokenRequestReturnsErrorForBadData() {
         mockUrlSession.tokenResponseData = badAccessTokenData
         let errorExpectation = expectation(description: "Error occurred")
-        _ = client?.accounts(userId: defaultUserId, success: { _ in }, failure: { _,_  in
+        _ = client?.accounts(userId: defaultUserId, success: { _ in }, failure: { _, _  in
             XCTAssert(true, "Error occurred")
             errorExpectation.fulfill()
         })
@@ -90,7 +90,7 @@ class SbankenClientAccessTokenTests: XCTestCase {
         var error = false
         _ = client?.accounts(userId: defaultUserId,
                              success: { _ in },
-                             failure: { _,_  in error = true })
+                             failure: { _, _  in error = true })
         
         XCTAssertTrue(error)
     }
@@ -110,15 +110,13 @@ class SbankenClientAccessTokenTests: XCTestCase {
         XCTAssertTrue(error)
     }
     
-    
-    
     func testTokenRequestReturnsSuccessForGoodData() {
         mockUrlSession.tokenResponseData = goodAccessTokenData
         mockUrlSession.responseData = goodAccountData
         var error = false
         _ = client?.accounts(userId: defaultUserId, success: { _ in
             error = false
-        }, failure: { _,_  in
+        }, failure: { _, _  in
             error = true
         })
         

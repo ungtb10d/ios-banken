@@ -103,7 +103,7 @@ class SbankenClientTransactionsTests: XCTestCase {
         _ = transactionRequest(userId: defaultUserId,
                                accountNumber: defaultAccountNumber,
                                success: { _ in },
-                               failure: { (returnedError) in error = true })
+                               failure: { _ in error = true })
         
         XCTAssertTrue(error)
     }
@@ -115,7 +115,7 @@ class SbankenClientTransactionsTests: XCTestCase {
         _ = transactionRequest(userId: defaultUserId,
                                accountNumber: defaultAccountNumber,
                                success: { (transactionResponse) in response = transactionResponse },
-                               failure: { (returnedError) in error = true })
+                               failure: { _ in error = true })
         
         XCTAssertFalse(error)
         XCTAssertNotNil(response)
@@ -134,9 +134,15 @@ class SbankenClientTransactionsTests: XCTestCase {
     
     func transactionRequest(userId: String,
                             accountNumber: String,
-                            success: @escaping (TransactionResponse) -> Void = {_ in },
-                            failure: @escaping (Error?) -> Void = {_ in }) -> URLRequest? {
-        client?.transactions(userId: userId, accountId: "0001", startDate: Date(), endDate: Date(), index: 0, length: 10, success: { (transactionResponse) in
+                            success: @escaping (TransactionResponse) -> Void = { _ in },
+                            failure: @escaping (Error?) -> Void = { _ in }) -> URLRequest? {
+        client?.transactions(userId: userId,
+                             accountId: "0001",
+                             startDate: Date(),
+                             endDate: Date(),
+                             index: 0,
+                             length: 10,
+                             success: { (transactionResponse) in
             success(transactionResponse)
         }, failure: { (error) in
             failure(error)

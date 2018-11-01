@@ -281,6 +281,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 138E9E641F88F7D3000F8A2E /* Build configuration list for PBXNativeTarget "SbankenClient" */;
 			buildPhases = (
+				EB8E9860218B127100181A0E /* SwiftLint */,
 				138E9E4B1F88F7D3000F8A2E /* Sources */,
 				138E9E4C1F88F7D3000F8A2E /* Frameworks */,
 				138E9E4D1F88F7D3000F8A2E /* Headers */,
@@ -382,6 +383,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		EB8E9860218B127100181A0E /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		130A323B1F8AAB1F0005BCE2 /* Sources */ = {

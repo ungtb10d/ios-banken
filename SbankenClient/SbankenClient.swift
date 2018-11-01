@@ -29,7 +29,9 @@ open class SbankenClient: NSObject {
         self.secret = secret
     }
     
-    public func accounts(userId: String, success: @escaping ([Account]) -> Void, failure: @escaping (Error?, String?) -> Void) {
+    public func accounts(userId: String,
+                         success: @escaping ([Account]) -> Void,
+                         failure: @escaping (Error?, String?) -> Void) {
         accessToken(clientId: clientId, secret: secret) { (token) in
             guard token != nil else {
                 failure(ClientError.invalidToken, "Invalid or expired token")
@@ -40,7 +42,7 @@ open class SbankenClient: NSObject {
             guard var request = self.urlRequest(urlString, token: token!) else { return }
             request.setValue(userId, forHTTPHeaderField: "CustomerID")
             
-            self.urlSession.dataTask(with: request, completionHandler: { (data, response, error) in
+            self.urlSession.dataTask(with: request, completionHandler: { (data, _, error) in
                 guard data != nil, error == nil else {
                     failure(error, "Requst failed or empty response")
                     return
@@ -55,7 +57,14 @@ open class SbankenClient: NSObject {
         }
     }
     
-    public func transactions(userId: String, accountId: String, startDate: Date, endDate: Date = Date(), index: Int = 0, length: Int = 10, success: @escaping (TransactionResponse) -> Void, failure: @escaping (Error?) -> Void) {
+    public func transactions(userId: String,
+                             accountId: String,
+                             startDate: Date,
+                             endDate: Date = Date(),
+                             index: Int = 0,
+                             length: Int = 10,
+                             success: @escaping (TransactionResponse) -> Void,
+                             failure: @escaping (Error?) -> Void) {
         accessToken(clientId: clientId, secret: secret) { (token) in
             guard token != nil else {
                 failure(nil)
@@ -68,13 +77,13 @@ open class SbankenClient: NSObject {
                 "length": "\(length)",
                 "startDate": formatter.string(from: startDate),
                 "endDate": formatter.string(from: endDate)
-                ] as [String : Any]
+                ] as [String: Any]
 
             let urlString = "\(Constants.baseUrl)/Bank/api/v1/Transactions/\(accountId)"
             guard var request = self.urlRequest(urlString, token: token!, parameters: parameters) else { return }
             request.setValue(userId, forHTTPHeaderField: "CustomerID")
             
-            self.urlSession.dataTask(with: request, completionHandler: { (data, response, error) in
+            self.urlSession.dataTask(with: request, completionHandler: { (data, _, error) in
                 guard data != nil, error == nil else {
                     failure(error)
                     return
@@ -89,7 +98,13 @@ open class SbankenClient: NSObject {
         }
     }
     
-    public func transfer(userId: String, fromAccount: String, toAccount: String, message: String, amount: Float, success: @escaping (TransferResponse) -> Void, failure: @escaping (Error?) -> Void) {
+    public func transfer(userId: String,
+                         fromAccount: String,
+                         toAccount: String,
+                         message: String,
+                         amount: Float,
+                         success: @escaping (TransferResponse) -> Void,
+                         failure: @escaping (Error?) -> Void) {
         accessToken(clientId: clientId, secret: secret) { (token) in
             guard token != nil else {
                 failure(nil)
@@ -99,7 +114,10 @@ open class SbankenClient: NSObject {
             let urlString = "\(Constants.baseUrl)/Bank/api/v1/Transfers"
             guard var request = self.urlRequest(urlString, token: token!) else { return }
             
-            let transferRequest = TransferRequest(fromAccount: fromAccount, toAccount: toAccount, message: message, amount: amount)
+            let transferRequest = TransferRequest(fromAccount: fromAccount,
+                                                  toAccount: toAccount,
+                                                  message: message,
+                                                  amount: amount)
             
             request.httpMethod = "POST"
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -111,7 +129,7 @@ open class SbankenClient: NSObject {
                 failure(nil)
             }
             
-            self.urlSession.dataTask(with: request, completionHandler: { (data, response, error) in
+            self.urlSession.dataTask(with: request, completionHandler: { (data, _, error) in
                 guard data != nil, error == nil else {
                     failure(error)
                     return
@@ -177,7 +195,8 @@ open class SbankenClient: NSObject {
         request.httpMethod = "POST"
         request.httpBody = "grant_type=client_credentials".data(using: .utf8)
         
-        self.urlSession.dataTask(with: request, completionHandler: { (data, response, error) in
+        self.urlSession.dataTask(with: request,
+                                 completionHandler: { (data, _, error) in
             guard data != nil, error == nil else {
                 completion(nil)
                 return
