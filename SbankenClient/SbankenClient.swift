@@ -29,10 +29,10 @@ open class SbankenClient: NSObject {
         self.secret = secret
     }
     
-    public func accounts(userId: String, success: @escaping ([Account]) -> Void, failure: @escaping (Error?) -> Void) {
+    public func accounts(userId: String, success: @escaping ([Account]) -> Void, failure: @escaping (Error?, String?) -> Void) {
         accessToken(clientId: clientId, secret: secret) { (token) in
             guard token != nil else {
-                failure(nil)
+                failure(ClientError.invalidToken, "Invalid or expired token")
                 return
             }
             
@@ -42,14 +42,14 @@ open class SbankenClient: NSObject {
             
             self.urlSession.dataTask(with: request, completionHandler: { (data, response, error) in
                 guard data != nil, error == nil else {
-                    failure(error)
+                    failure(error, "Requst failed or empty response")
                     return
                 }
                 
                 if let accountsResponse = try? self.decoder.decode(AccountsResponse.self, from: data!) {
                     success(accountsResponse.items)
                 } else {
-                    failure(nil)
+                    failure(ClientError.responseDecodingFailed, "Could not decode AccountsResponse")
                 }
             }).resume()
         }

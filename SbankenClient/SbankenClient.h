@@ -15,5 +15,3 @@ FOUNDATION_EXPORT double SbankenClientVersionNumber;
 FOUNDATION_EXPORT const unsigned char SbankenClientVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <SbankenClient/PublicHeader.h>
-
-

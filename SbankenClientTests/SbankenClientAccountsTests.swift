@@ -82,7 +82,7 @@ class SbankenClientAccountsTests: XCTestCase {
     func testAccountRequestReturnsErrorForBadData() {
         mockUrlSession.responseData = badAccountData
         let errorExpectation = expectation(description: "Error occurred")
-        _ = accountRequest(userId: defaultUserId, success: { _ in }, failure: { (returnedError) in
+        _ = accountRequest(userId: defaultUserId, success: { _ in }, failure: { (returnedError, _) in
             XCTAssert(true, "Error occurred")
             errorExpectation.fulfill()
         })
@@ -96,7 +96,7 @@ class SbankenClientAccountsTests: XCTestCase {
         _ = accountRequest(userId: defaultUserId, success: { (accounts) in
             XCTAssertNotNil(accounts)
             returnExpectation.fulfill()
-        }, failure: { (returnedError) in
+        }, failure: { (returnedError, _) in
             XCTFail("Error should not occur")
             returnExpectation.fulfill()
         })
@@ -106,7 +106,7 @@ class SbankenClientAccountsTests: XCTestCase {
     
     func testAccountRequestDoesNotFail() {
         let errorExpectation = expectation(description: "Error occurred")
-        _ = accountRequest(userId: defaultUserId, success: { _ in }, failure: { (returnedError) in
+        _ = accountRequest(userId: defaultUserId, success: { _ in }, failure: { (returnedError, _) in
             XCTAssert(true, "Error occurred")
             errorExpectation.fulfill()
         })
@@ -117,7 +117,7 @@ class SbankenClientAccountsTests: XCTestCase {
     func testAccountRequestReturnsErrorForHttpError() {
         mockUrlSession.responseError = NSError(domain: "error", code: 0, userInfo: nil)
         let errorExpectation = expectation(description: "Error occurred")
-        _ = accountRequest(userId: defaultUserId, success: { _ in }, failure: { (returnedError) in
+        _ = accountRequest(userId: defaultUserId, success: { _ in }, failure: { (returnedError, _) in
             XCTAssert(true, "Error occurred")
             errorExpectation.fulfill()
         })
@@ -125,7 +125,7 @@ class SbankenClientAccountsTests: XCTestCase {
         waitForExpectations(timeout: 10)
     }
     
-    func accountRequest(userId: String, success: @escaping ([Account]) -> Void = {_ in }, failure: @escaping (Error?) -> Void = {_ in }) -> URLRequest? {
+    func accountRequest(userId: String, success: @escaping ([Account]) -> Void = {_ in }, failure: @escaping (Error?, String?) -> Void = {_,_  in }) -> URLRequest? {
         client?.accounts(userId: userId, success: success, failure: failure)
         
         return mockUrlSession.lastRequest
