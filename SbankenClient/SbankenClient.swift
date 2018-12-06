@@ -11,8 +11,7 @@ import Foundation
 open class SbankenClient: NSObject {
     var clientId: String?
     var secret: String?
-    var baseUrl: String? = Constants.baseUrl
-    
+    public var baseUrl: String? = Constants.baseUrl
     public var tokenManager: AccessTokenManager = AccessTokenManager()
     public var urlSession: SURLSessionProtocol = URLSession.shared
     public var decoder: JSONDecoder = {
