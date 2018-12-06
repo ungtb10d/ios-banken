@@ -11,6 +11,7 @@ import Foundation
 open class SbankenClient: NSObject {
     var clientId: String?
     var secret: String?
+    var baseUrl: String? = Constants.baseUrl
     
     public var tokenManager: AccessTokenManager = AccessTokenManager()
     public var urlSession: SURLSessionProtocol = URLSession.shared
@@ -38,7 +39,7 @@ open class SbankenClient: NSObject {
                 return
             }
             
-            let urlString = "\(Constants.baseUrl)/Bank/api/v1/Accounts"
+            let urlString = "\(self.baseUrl)/Bank/api/v1/Accounts"
             guard var request = self.urlRequest(urlString, token: token!) else { return }
             request.setValue(userId, forHTTPHeaderField: "CustomerID")
             
@@ -79,7 +80,7 @@ open class SbankenClient: NSObject {
                 "endDate": formatter.string(from: endDate)
                 ] as [String: Any]
 
-            let urlString = "\(Constants.baseUrl)/Bank/api/v1/Transactions/\(accountId)"
+            let urlString = "\(self.baseUrl)/Bank/api/v1/Transactions/\(accountId)"
             guard var request = self.urlRequest(urlString, token: token!, parameters: parameters) else { return }
             request.setValue(userId, forHTTPHeaderField: "CustomerID")
             
@@ -111,7 +112,7 @@ open class SbankenClient: NSObject {
                 return
             }
             
-            let urlString = "\(Constants.baseUrl)/Bank/api/v1/Transfers"
+            let urlString = "\(self.baseUrl)/Bank/api/v1/Transfers"
             guard var request = self.urlRequest(urlString, token: token!) else { return }
             
             let transferRequest = TransferRequest(fromAccount: fromAccount,
