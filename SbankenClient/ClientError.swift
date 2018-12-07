@@ -13,4 +13,5 @@ public enum ClientError: Error {
     case invalidRequest
     case responseDecodingFailed
     case errorResponse
+    case baseUrlNotSet
 }

@@ -38,7 +38,12 @@ open class SbankenClient: NSObject {
                 return
             }
             
-            let urlString = "\(self.baseUrl)/Bank/api/v1/Accounts"
+            guard let baseUrl = self.baseUrl else {
+                failure(ClientError.baseUrlNotSet, "BaseURL not set")
+                return
+            }
+            
+            let urlString = "\(baseUrl)/Bank/api/v1/Accounts"
             guard var request = self.urlRequest(urlString, token: token!) else { return }
             request.setValue(userId, forHTTPHeaderField: "CustomerID")
             
@@ -79,7 +84,12 @@ open class SbankenClient: NSObject {
                 "endDate": formatter.string(from: endDate)
                 ] as [String: Any]
 
-            let urlString = "\(self.baseUrl)/Bank/api/v1/Transactions/\(accountId)"
+            guard let baseUrl = self.baseUrl else {
+                failure(ClientError.baseUrlNotSet)
+                return
+            }
+            
+            let urlString = "\(baseUrl)/Bank/api/v1/Transactions/\(accountId)"
             guard var request = self.urlRequest(urlString, token: token!, parameters: parameters) else { return }
             request.setValue(userId, forHTTPHeaderField: "CustomerID")
             
@@ -111,7 +121,12 @@ open class SbankenClient: NSObject {
                 return
             }
             
-            let urlString = "\(self.baseUrl)/Bank/api/v1/Transfers"
+            guard let baseUrl = self.baseUrl else {
+                failure(ClientError.baseUrlNotSet)
+                return
+            }
+            
+            let urlString = "\(baseUrl)/Bank/api/v1/Transfers"
             guard var request = self.urlRequest(urlString, token: token!) else { return }
             
             let transferRequest = TransferRequest(fromAccount: fromAccount,
