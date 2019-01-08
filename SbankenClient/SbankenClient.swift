@@ -168,6 +168,7 @@ open class SbankenClient: NSObject {
         guard let originalUrl = request.url?.absoluteString else { return nil }
         
         request.url = URL(string: "\(originalUrl)?\(parameters.stringFromHttpParameters())")
+        request.cachePolicy = .reloadIgnoringLocalCacheData
         
         return request
     }
