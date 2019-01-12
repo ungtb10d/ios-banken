@@ -143,7 +143,8 @@ public class SbankenClient: NSObject {
                 "index": "\(index)",
                 "length": "\(length)",
                 "startDate": formatter.string(from: startDate),
-                "endDate": formatter.string(from: endDate)
+                "endDate": formatter.string(from: endDate),
+                "status": "ALL"
                 ] as [String : Any]
             
             guard var request = self.urlRequest(urlString, token: token!, parameters: parameters) else { return }
@@ -157,6 +158,8 @@ public class SbankenClient: NSObject {
                 
                 let stringData = String(data: (data as Data?)!, encoding: .utf8)
                 let fixedString = stringData?.replacingOccurrences(of: "00:00:00", with: "00:00:00Z").data(using: .utf8)
+                
+                print(stringData?.replacingOccurrences(of: "00:00:00", with: "00:00:00Z"))
                 
                 if let eFakturasResponse = try? self.decoder.decode(EFakturasResponse.self, from: fixedString!) {
                     if eFakturasResponse.isError {
