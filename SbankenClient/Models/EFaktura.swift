@@ -15,12 +15,12 @@ public struct EFaktura: Codable {
     public let documentType: String
     public let status: String
     public let kid: String
-    public let originalDueDate: Date
+    public let originalDueDate: Date?
     public let originalAmount: Double
     public let minimumAmount: Double
-    public let updatedDueDate: Date
+    public let updatedDueDate: Date?
     public let updatedAmount: Double
-    public let notificationDate: Date
+    public let notificationDate: Date?
     public let creditAccountNumber: String
     public let issuerName: String
 }

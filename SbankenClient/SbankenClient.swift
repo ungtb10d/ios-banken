@@ -8,6 +8,17 @@
 
 import Foundation
 
+extension DateFormatter {
+    static let iso8601Full: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        formatter.calendar = Calendar(identifier: .iso8601)
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        return formatter
+    }()
+}
+
 public class SbankenClient: NSObject {
     var clientId: String
     var secret: String
@@ -17,6 +28,11 @@ public class SbankenClient: NSObject {
     var decoder: JSONDecoder = {
         let jsonDecoder = JSONDecoder()
         jsonDecoder.dateDecodingStrategy = .iso8601
+        return jsonDecoder
+    }()
+    var fakturaDecoder: JSONDecoder = {
+        let jsonDecoder = JSONDecoder()
+        jsonDecoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
         return jsonDecoder
     }()
     var encoder: JSONEncoder = {
@@ -149,9 +165,9 @@ public class SbankenClient: NSObject {
     }
 
     public func eFakturas(userId: String,
-                          status: String,
                           startDate: Date,
                           endDate: Date = Date(),
+                          status: String = "ALL",
                           length: Int = 100,
                           index: Int = 0,
                           success: @escaping (EFakturasResponse) -> Void,
@@ -169,7 +185,7 @@ public class SbankenClient: NSObject {
                 "length": "\(length)",
                 "startDate": formatter.string(from: startDate),
                 "endDate": formatter.string(from: endDate),
-                "status": "ALL"
+                "status": status
                 ] as [String: Any]
 
             guard var request = RequestHelper.urlRequest(urlString,
@@ -183,13 +199,8 @@ public class SbankenClient: NSObject {
                     failure(error)
                     return
                 }
-
-                let stringData = String(data: (data as Data?)!, encoding: .utf8)
-                let fixedString = stringData?.replacingOccurrences(of: "00:00:00", with: "00:00:00Z").data(using: .utf8)
-
-                print(stringData?.replacingOccurrences(of: "00:00:00", with: "00:00:00Z"))
                 
-                if let eFakturasResponse = try? self.decoder.decode(EFakturasResponse.self, from: fixedString!) {
+                if let eFakturasResponse = try? self.fakturaDecoder.decode(EFakturasResponse.self, from: data!) {
                     if eFakturasResponse.isError {
                         failure(nil)
                     } else {
