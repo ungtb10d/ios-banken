@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct EFaktura: Codable {
+public class EFaktura: Codable {
     public let eFakturaId: String
     public let issuerId: String
     public let eFakturaReference: String
