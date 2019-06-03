@@ -50,7 +50,7 @@ class SbankenClientTransferTests: XCTestCase {
     func testClientQueriesForTransfer() {
         let request = transferRequest(userId: defaultUserId)
         
-        XCTAssertEqual(request?.url?.path, "/Bank/api/v1/Transfers")
+        XCTAssertEqual(request?.url?.path, "/exec.bank/api/v1/Transfers")
     }
     
     func testTransferRequestHasRequiredHeaders() {

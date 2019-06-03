@@ -36,7 +36,7 @@ public class SbankenClient: NSObject {
                 return
             }
             
-            let urlString = "\(Constants.baseUrl)/Bank/api/v1/Accounts"
+            let urlString = "\(Constants.baseUrl)/exec.bank/api/v1/Accounts"
             guard var request = self.urlRequest(urlString, token: token!) else { return }
             request.setValue(userId, forHTTPHeaderField: "CustomerID")
             
@@ -70,7 +70,7 @@ public class SbankenClient: NSObject {
                 "endDate": formatter.string(from: endDate)
                 ] as [String : Any]
 
-            let urlString = "\(Constants.baseUrl)/Bank/api/v1/Transactions/\(accountId)"
+            let urlString = "\(Constants.baseUrl)/exec.bank/api/v1/Transactions/\(accountId)"
             guard var request = self.urlRequest(urlString, token: token!, parameters: parameters) else { return }
             request.setValue(userId, forHTTPHeaderField: "CustomerID")
             
@@ -96,7 +96,7 @@ public class SbankenClient: NSObject {
                 return
             }
             
-            let urlString = "\(Constants.baseUrl)/Bank/api/v1/Transfers"
+            let urlString = "\(Constants.baseUrl)/exec.bank/api/v1/Transfers"
             guard var request = self.urlRequest(urlString, token: token!) else { return }
             
             let transferRequest = TransferRequest(fromAccount: fromAccount, toAccount: toAccount, message: message, amount: amount)
