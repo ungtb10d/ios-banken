@@ -22,7 +22,6 @@ class SbankenClientTransactionsTests: XCTestCase {
     {
     "availableItems": 2,
     "items": [{
-            "transactionId": "0",
             "accountingDate": "2018-03-17T00:00:00+01:00",
             "interestDate": "2018-03-17T00:00:00+01:00",
             "otherAccountNumberSpecified": false,
@@ -35,7 +34,6 @@ class SbankenClientTransactionsTests: XCTestCase {
             "cardDetailsSpecified": false
         },
         {
-            "transactionId": "43465574623452563456",
             "accountingDate": "2018-03-13T00:00:00+01:00",
             "interestDate": "2018-03-13T00:00:00+01:00",
             "otherAccountNumberSpecified": false,
