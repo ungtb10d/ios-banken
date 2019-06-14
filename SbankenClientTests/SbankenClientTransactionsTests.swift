@@ -86,7 +86,7 @@ class SbankenClientTransactionsTests: XCTestCase {
     func testClientQueriesForTransactions() {
         let request = transactionRequest(userId: defaultUserId, accountNumber: defaultAccountNumber)
         
-        XCTAssertEqual(request?.url?.path, "/Bank/api/v1/Transactions/\(defaultAccountId)")
+        XCTAssertEqual(request?.url?.path, "/exec.bank/api/v1/Transactions/\(defaultAccountId)")
     }
     
     func testTransactionRequestHasRequiredHeaders() {
