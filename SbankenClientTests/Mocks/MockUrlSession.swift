@@ -28,13 +28,15 @@ class MockURLSessionDataTask: URLSessionDataTask, URLSessionDataTaskProtocol {
 class MockURLSession: SURLSessionProtocol {
     var lastRequest: URLRequest?
     var responseData: Data?
-    var tokenResponseData: Data? = nil
-    var responseError: Error? = nil
+    var tokenResponseData: Data?
+    var responseError: Error?
     var responseUrlResponse: URLResponse?
     
-    func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
+    func dataTask(with request: URLRequest,
+                  completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void)
+                    -> URLSessionDataTask {
         lastRequest = request
-        if (request.url?.path == "/identityserver/connect/token") {
+        if request.url?.path == "/identityserver/connect/token" {
             completionHandler(self.tokenResponseData, self.responseUrlResponse, self.responseError)
         } else {
             completionHandler(self.responseData, self.responseUrlResponse, self.responseError)

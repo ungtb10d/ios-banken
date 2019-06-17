@@ -8,54 +8,68 @@
 
 import Foundation
 
-public class SbankenClient: NSObject {
-    var clientId: String
-    var secret: String
-    
-    var tokenManager: AccessTokenManager = AccessTokenManager()
-    var urlSession: SURLSessionProtocol = URLSession.shared
-    var decoder: JSONDecoder = {
+open class SbankenClient: NSObject {
+    var clientId: String?
+    var secret: String?
+    public var baseUrl: String? = Constants.baseUrl
+    public var tokenManager: AccessTokenManager = AccessTokenManager()
+    public var urlSession: SURLSessionProtocol = URLSession.shared
+    public var decoder: JSONDecoder = {
         let jsonDecoder = JSONDecoder()
         jsonDecoder.dateDecodingStrategy = .iso8601
         return jsonDecoder
     }()
-    var encoder: JSONEncoder = {
+    public var encoder: JSONEncoder = {
         let jsonEncoder = JSONEncoder()
         return jsonEncoder
     }()
     
-    public init(clientId: String, secret: String) {
+    public init(clientId: String?, secret: String?) {
         self.clientId = clientId
         self.secret = secret
     }
     
-    public func accounts(userId: String, success: @escaping ([Account]) -> Void, failure: @escaping (Error?) -> Void) {
+    public func accounts(userId: String,
+                         success: @escaping ([Account]) -> Void,
+                         failure: @escaping (Error?, String?) -> Void) {
         accessToken(clientId: clientId, secret: secret) { (token) in
             guard token != nil else {
-                failure(nil)
+                failure(ClientError.invalidToken, "Invalid or expired token")
                 return
             }
             
-            let urlString = "\(Constants.baseUrl)/exec.bank/api/v1/Accounts"
+            guard let baseUrl = self.baseUrl else {
+                failure(ClientError.baseUrlNotSet, "BaseURL not set")
+                return
+            }
+            
+            let urlString = "\(baseUrl)/exec.bank/api/v1/Accounts"
             guard var request = self.urlRequest(urlString, token: token!) else { return }
             request.setValue(userId, forHTTPHeaderField: "CustomerID")
             
-            self.urlSession.dataTask(with: request, completionHandler: { (data, response, error) in
+            self.urlSession.dataTask(with: request, completionHandler: { (data, _, error) in
                 guard data != nil, error == nil else {
-                    failure(error)
+                    failure(error, "Requst failed or empty response")
                     return
                 }
                 
                 if let accountsResponse = try? self.decoder.decode(AccountsResponse.self, from: data!) {
                     success(accountsResponse.items)
                 } else {
-                    failure(nil)
+                    failure(ClientError.responseDecodingFailed, "Could not decode AccountsResponse")
                 }
             }).resume()
         }
     }
     
-    public func transactions(userId: String, accountId: String, startDate: Date, endDate: Date = Date(), index: Int = 0, length: Int = 10, success: @escaping (TransactionResponse) -> Void, failure: @escaping (Error?) -> Void) {
+    public func transactions(userId: String,
+                             accountId: String,
+                             startDate: Date,
+                             endDate: Date = Date(),
+                             index: Int = 0,
+                             length: Int = 10,
+                             success: @escaping (TransactionResponse) -> Void,
+                             failure: @escaping (Error?) -> Void) {
         accessToken(clientId: clientId, secret: secret) { (token) in
             guard token != nil else {
                 failure(nil)
@@ -68,13 +82,18 @@ public class SbankenClient: NSObject {
                 "length": "\(length)",
                 "startDate": formatter.string(from: startDate),
                 "endDate": formatter.string(from: endDate)
-                ] as [String : Any]
+                ] as [String: Any]
 
-            let urlString = "\(Constants.baseUrl)/exec.bank/api/v1/Transactions/\(accountId)"
+            guard let baseUrl = self.baseUrl else {
+                failure(ClientError.baseUrlNotSet)
+                return
+            }
+            
+            let urlString = "\(baseUrl)/exec.bank/api/v1/Transactions/\(accountId)"
             guard var request = self.urlRequest(urlString, token: token!, parameters: parameters) else { return }
             request.setValue(userId, forHTTPHeaderField: "CustomerID")
             
-            self.urlSession.dataTask(with: request, completionHandler: { (data, response, error) in
+            self.urlSession.dataTask(with: request, completionHandler: { (data, _, error) in
                 guard data != nil, error == nil else {
                     failure(error)
                     return
@@ -89,17 +108,31 @@ public class SbankenClient: NSObject {
         }
     }
     
-    public func transfer(userId: String, fromAccount: String, toAccount: String, message: String, amount: Float, success: @escaping (TransferResponse) -> Void, failure: @escaping (Error?) -> Void) {
+    public func transfer(userId: String,
+                         fromAccount: String,
+                         toAccount: String,
+                         message: String,
+                         amount: Float,
+                         success: @escaping (TransferResponse) -> Void,
+                         failure: @escaping (Error?) -> Void) {
         accessToken(clientId: clientId, secret: secret) { (token) in
             guard token != nil else {
                 failure(nil)
                 return
             }
             
-            let urlString = "\(Constants.baseUrl)/exec.bank/api/v1/Transfers"
+            guard let baseUrl = self.baseUrl else {
+                failure(ClientError.baseUrlNotSet)
+                return
+            }
+            
+            let urlString = "\(baseUrl)/exec.bank/api/v1/Transfers"
             guard var request = self.urlRequest(urlString, token: token!) else { return }
             
-            let transferRequest = TransferRequest(fromAccount: fromAccount, toAccount: toAccount, message: message, amount: amount)
+            let transferRequest = TransferRequest(fromAccount: fromAccount,
+                                                  toAccount: toAccount,
+                                                  message: message,
+                                                  amount: amount)
             
             request.httpMethod = "POST"
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -111,7 +144,7 @@ public class SbankenClient: NSObject {
                 failure(nil)
             }
             
-            self.urlSession.dataTask(with: request, completionHandler: { (data, response, error) in
+            self.urlSession.dataTask(with: request, completionHandler: { (data, _, error) in
                 guard data != nil, error == nil else {
                     failure(error)
                     return
@@ -130,16 +163,17 @@ public class SbankenClient: NSObject {
         }
     }
     
-    private func urlRequest(_ urlString: String, token: AccessToken, parameters: [String: Any]) -> URLRequest? {
+    public func urlRequest(_ urlString: String, token: AccessToken, parameters: [String: Any]) -> URLRequest? {
         guard var request = urlRequest(urlString, token: token) else { return nil }
         guard let originalUrl = request.url?.absoluteString else { return nil }
         
         request.url = URL(string: "\(originalUrl)?\(parameters.stringFromHttpParameters())")
+        request.cachePolicy = .reloadIgnoringLocalCacheData
         
         return request
     }
     
-    private func urlRequest(_ urlString: String, token: AccessToken) -> URLRequest? {
+    public func urlRequest(_ urlString: String, token: AccessToken) -> URLRequest? {
         guard let url = URL(string: urlString) else { return nil }
         var request = URLRequest(url: url)
         request.setValue("Bearer \(token.accessToken)", forHTTPHeaderField: "Authorization")
@@ -148,11 +182,13 @@ public class SbankenClient: NSObject {
         return request
     }
     
-    private func accessToken(clientId: String, secret: String, completion: @escaping (AccessToken?) -> Void) {
+    open func accessToken(clientId: String?, secret: String?, completion: @escaping (AccessToken?) -> Void) {
         if tokenManager.token != nil {
             completion(tokenManager.token!)
             return
         }
+        
+        guard let clientId = clientId, let secret = secret else { return }
         
         let characterSet = NSMutableCharacterSet.alphanumeric()
         characterSet.addCharacters(in: "-_.!~*'()")
@@ -175,7 +211,8 @@ public class SbankenClient: NSObject {
         request.httpMethod = "POST"
         request.httpBody = "grant_type=client_credentials".data(using: .utf8)
         
-        self.urlSession.dataTask(with: request, completionHandler: { (data, response, error) in
+        self.urlSession.dataTask(with: request,
+                                 completionHandler: { (data, _, error) in
             guard data != nil, error == nil else {
                 completion(nil)
                 return
