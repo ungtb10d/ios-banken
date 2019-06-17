@@ -129,8 +129,8 @@ open class SbankenClient: NSObject {
             let urlString = "\(baseUrl)/exec.bank/api/v1/Transfers"
             guard var request = self.urlRequest(urlString, token: token!) else { return }
             
-            let transferRequest = TransferRequest(fromAccount: fromAccount,
-                                                  toAccount: toAccount,
+            let transferRequest = TransferRequest(fromAccountId: fromAccount,
+                                                  toAccountId: toAccount,
                                                   message: message,
                                                   amount: amount)
             
