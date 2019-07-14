@@ -21,7 +21,8 @@ open class SbankenClient: NSObject {
     }()
     var fakturaDecoder: JSONDecoder = {
         let jsonDecoder = JSONDecoder()
-        jsonDecoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
+        jsonDecoder.dateDecodingStrategy = .iso8601
+        //jsonDecoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
         return jsonDecoder
     }()
     var encoder: JSONEncoder = {
@@ -134,8 +135,8 @@ open class SbankenClient: NSObject {
             let urlString = "\(baseUrl)/exec.bank/api/v1/Transfers"
             guard var request = self.urlRequest(urlString, token: token!) else { return }
             
-            let transferRequest = TransferRequest(fromAccount: fromAccount,
-                                                  toAccount: toAccount,
+            let transferRequest = TransferRequest(fromAccountId: fromAccount,
+                                                  toAccountId: toAccount,
                                                   message: message,
                                                   amount: amount)
             
@@ -264,6 +265,7 @@ open class SbankenClient: NSObject {
                 }
             }).resume()
         }
+    }
     
     public func urlRequest(_ urlString: String, token: AccessToken, parameters: [String: Any]) -> URLRequest? {
         guard var request = urlRequest(urlString, token: token) else { return nil }
@@ -327,5 +329,4 @@ open class SbankenClient: NSObject {
             completion(self.tokenManager.token)
         }).resume()
     }
-}
 }
