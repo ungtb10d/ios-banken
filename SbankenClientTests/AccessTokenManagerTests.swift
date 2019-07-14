@@ -13,7 +13,7 @@ import XCTest
 
 class AccessTokenManagerTests: XCTestCase {
     lazy var manager: AccessTokenManager = {
-        return AccessTokenManager()
+        AccessTokenManager()
     }()
     
     let oneWeek = 60 * 60 * 24 * 7

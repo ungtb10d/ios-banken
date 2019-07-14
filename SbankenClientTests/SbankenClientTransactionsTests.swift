@@ -22,7 +22,6 @@ class SbankenClientTransactionsTests: XCTestCase {
     {
     "availableItems": 2,
     "items": [{
-            "transactionId": "0",
             "accountingDate": "2018-03-17T00:00:00+01:00",
             "interestDate": "2018-03-17T00:00:00+01:00",
             "otherAccountNumberSpecified": false,
@@ -35,7 +34,6 @@ class SbankenClientTransactionsTests: XCTestCase {
             "cardDetailsSpecified": false
         },
         {
-            "transactionId": "43465574623452563456",
             "accountingDate": "2018-03-13T00:00:00+01:00",
             "interestDate": "2018-03-13T00:00:00+01:00",
             "otherAccountNumberSpecified": false,
@@ -86,7 +84,7 @@ class SbankenClientTransactionsTests: XCTestCase {
     func testClientQueriesForTransactions() {
         let request = transactionRequest(userId: defaultUserId, accountNumber: defaultAccountNumber)
         
-        XCTAssertEqual(request?.url?.path, "/Bank/api/v1/Transactions/\(defaultAccountId)")
+        XCTAssertEqual(request?.url?.path, "/exec.bank/api/v1/Transactions/\(defaultAccountId)")
     }
     
     func testTransactionRequestHasRequiredHeaders() {
@@ -134,8 +132,8 @@ class SbankenClientTransactionsTests: XCTestCase {
     
     func transactionRequest(userId: String,
                             accountNumber: String,
-                            success: @escaping (TransactionResponse) -> Void = {_ in },
-                            failure: @escaping (Error?) -> Void = {_ in }) -> URLRequest? {
+                            success: @escaping (TransactionResponse) -> Void = { _ in },
+                            failure: @escaping (Error?) -> Void = { _ in }) -> URLRequest? {
         client?.transactions(userId: userId,
                              accountId: "0001",
                              startDate: Date(),

@@ -9,7 +9,6 @@
 import Foundation
 
 public class Transaction: Codable {
-    public let transactionId: String
     public let accountingDate: Date?
     public let interestDate: Date?
     public let otherAccountNumber: String?

@@ -39,11 +39,13 @@ extension Dictionary {
     /// http://www.ietf.org/rfc/rfc3986.txt
     ///
     /// - returns: String representation in the form of key1=value1&key2=value2
-    /// where the keys and values are percent escaped
+    ///            where the keys and values are percent escaped
+    
     func stringFromHttpParameters() -> String {
-        let parameterArray = map { key, value -> String in
-            guard let key = key as? String, let value = value as? String else { return "" }
-
+        let parameterArray = compactMap { key, value -> String? in
+            guard let key = key as? String, let value = value as? String else {
+                return nil
+            }
             let percentEscapedKey = key.addingPercentEncodingForURLQueryValue()!
             let percentEscapedValue = value.addingPercentEncodingForURLQueryValue()!
             return "\(percentEscapedKey)=\(percentEscapedValue)"

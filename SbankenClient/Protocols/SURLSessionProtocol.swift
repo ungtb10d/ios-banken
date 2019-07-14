@@ -10,7 +10,8 @@ import Foundation
 
 public protocol SURLSessionProtocol {
     func dataTask(with request: URLRequest,
-                  completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask
+                  completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void)
+                    -> URLSessionDataTask
 }
 
 extension URLSession: SURLSessionProtocol { }

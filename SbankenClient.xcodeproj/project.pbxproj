@@ -12,7 +12,6 @@
 		130A324F1F8AAB9B0005BCE2 /* String+urlParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130FF6401F8A09DD00D25F48 /* String+urlParameters.swift */; };
 		130A32521F8AAB9B0005BCE2 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137A2B701F88FA54003BDEAC /* Account.swift */; };
 		130A32531F8AAB9B0005BCE2 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DDFDAB1F8921EF009811A7 /* Transaction.swift */; };
-		130A32541F8AAB9B0005BCE2 /* SbankenClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138E9E6A1F88F83D000F8A2E /* SbankenClient.swift */; };
 		130A32551F8AAB9B0005BCE2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137A2B721F88FCC2003BDEAC /* Constants.swift */; };
 		130FF6411F8A09DD00D25F48 /* String+urlParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130FF6401F8A09DD00D25F48 /* String+urlParameters.swift */; };
 		131491F11F8C9098000B91C2 /* TransactionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131491F01F8C9098000B91C2 /* TransactionResponse.swift */; };
@@ -56,6 +55,9 @@
 		8BC1A8A7212C709500BD0657 /* EFakturaPaymentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC1A8A6212C709500BD0657 /* EFakturaPaymentResponse.swift */; };
 		8BC1A8A8212C709500BD0657 /* EFakturaPaymentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC1A8A6212C709500BD0657 /* EFakturaPaymentResponse.swift */; };
 		DF793C62200E2FA400BD8800 /* SbankenClientTransferTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF793C61200E2FA400BD8800 /* SbankenClientTransferTests.swift */; };
+		EB2E2F51218B08EE00CC2AEE /* ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2E2F50218B08EE00CC2AEE /* ClientError.swift */; };
+		EB8E985D218B0FAB00181A0E /* ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2E2F50218B08EE00CC2AEE /* ClientError.swift */; };
+		EB8E985F218B0FE200181A0E /* SbankenClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138E9E6A1F88F83D000F8A2E /* SbankenClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +106,7 @@
 		8BC1A8A3212C701500BD0657 /* EFakturaPaymentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFakturaPaymentRequest.swift; sourceTree = "<group>"; };
 		8BC1A8A6212C709500BD0657 /* EFakturaPaymentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFakturaPaymentResponse.swift; sourceTree = "<group>"; };
 		DF793C61200E2FA400BD8800 /* SbankenClientTransferTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SbankenClientTransferTests.swift; sourceTree = "<group>"; };
+		EB2E2F50218B08EE00CC2AEE /* ClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +210,7 @@
 				137A2B6F1F88FA17003BDEAC /* Models */,
 				138E9E6A1F88F83D000F8A2E /* SbankenClient.swift */,
 				137A2B721F88FCC2003BDEAC /* Constants.swift */,
+				EB2E2F50218B08EE00CC2AEE /* ClientError.swift */,
 				138E9E531F88F7D3000F8A2E /* SbankenClient.h */,
 				138E9E541F88F7D3000F8A2E /* Info.plist */,
 			);
@@ -297,6 +301,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 138E9E641F88F7D3000F8A2E /* Build configuration list for PBXNativeTarget "SbankenClient" */;
 			buildPhases = (
+				EB8E9860218B127100181A0E /* SwiftLint */,
 				138E9E4B1F88F7D3000F8A2E /* Sources */,
 				139344312154049D002F07DA /* SwiftLint */,
 				138E9E4C1F88F7D3000F8A2E /* Frameworks */,
@@ -342,17 +347,17 @@
 				TargetAttributes = {
 					130A323F1F8AAB1F0005BCE2 = {
 						CreatedOnToolsVersion = 9.0;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 					138E9E4F1F88F7D3000F8A2E = {
 						CreatedOnToolsVersion = 9.0;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 					138E9E581F88F7D3000F8A2E = {
 						CreatedOnToolsVersion = 9.0;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -401,7 +406,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		139344312154049D002F07DA /* SwiftLint */ = {
+		EB8E9860218B127100181A0E /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -417,7 +422,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -426,6 +431,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB8E985D218B0FAB00181A0E /* ClientError.swift in Sources */,
 				8BA9EAB2205FD63500677F16 /* CardDetails.swift in Sources */,
 				130A32521F8AAB9B0005BCE2 /* Account.swift in Sources */,
 				130A32531F8AAB9B0005BCE2 /* Transaction.swift in Sources */,
@@ -442,9 +448,9 @@
 				134239D01F9083C70099842A /* SURLSessionProtocol.swift in Sources */,
 				1393443421540A22002F07DA /* RequestHelper.swift in Sources */,
 				8B3DD8211F8D2BEF007761E3 /* AccessTokenManager.swift in Sources */,
-				130A32541F8AAB9B0005BCE2 /* SbankenClient.swift in Sources */,
 				130A32551F8AAB9B0005BCE2 /* Constants.swift in Sources */,
 				13ED8FF41F8D5C7000D8A7D0 /* Double+shortDisplayValue.swift in Sources */,
+				EB8E985F218B0FE200181A0E /* SbankenClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,6 +458,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB2E2F51218B08EE00CC2AEE /* ClientError.swift in Sources */,
 				8BA9EAB1205FD63500677F16 /* CardDetails.swift in Sources */,
 				137A2B711F88FA54003BDEAC /* Account.swift in Sources */,
 				13DDFDAC1F8921EF009811A7 /* Transaction.swift in Sources */,
@@ -520,7 +527,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
@@ -545,7 +552,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
@@ -686,7 +693,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -708,7 +715,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = no.internbank.SbankenClient;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -722,7 +729,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = no.internbank.SbankenClientTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -736,7 +743,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = no.internbank.SbankenClientTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

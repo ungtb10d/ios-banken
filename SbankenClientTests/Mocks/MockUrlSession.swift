@@ -33,7 +33,8 @@ class MockURLSession: SURLSessionProtocol {
     var responseUrlResponse: URLResponse?
     
     func dataTask(with request: URLRequest,
-                  completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
+                  completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void)
+                    -> URLSessionDataTask {
         lastRequest = request
         if request.url?.path == "/identityserver/connect/token" {
             completionHandler(self.tokenResponseData, self.responseUrlResponse, self.responseError)

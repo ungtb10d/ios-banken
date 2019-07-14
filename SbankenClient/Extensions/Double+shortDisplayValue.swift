@@ -9,7 +9,7 @@
 import Foundation
 
 public extension Double {
-    public func shortDisplayValue() -> String {
+    func shortDisplayValue() -> String {
         let formatter = NumberFormatter()
         formatter.locale = Locale(identifier: "no-NO")
         formatter.numberStyle = NumberFormatter.Style.decimal

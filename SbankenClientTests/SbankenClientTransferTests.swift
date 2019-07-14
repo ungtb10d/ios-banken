@@ -50,7 +50,7 @@ class SbankenClientTransferTests: XCTestCase {
     func testClientQueriesForTransfer() {
         let request = transferRequest(userId: defaultUserId)
         
-        XCTAssertEqual(request?.url?.path, "/Bank/api/v1/Transfers")
+        XCTAssertEqual(request?.url?.path, "/exec.bank/api/v1/Transfers")
     }
     
     func testTransferRequestHasRequiredHeaders() {
@@ -119,8 +119,8 @@ class SbankenClientTransferTests: XCTestCase {
     
     func transferRequest(userId: String, fromAccountId: String = "1234", toAccountId: String = "5678",
                          message: String = "MESSAGE", amount: Float = 10.0,
-                         success: @escaping (TransferResponse) -> Void = {_ in },
-                         failure: @escaping (Error?) -> Void = {_ in }) -> URLRequest? {
+                         success: @escaping (TransferResponse) -> Void = { _ in },
+                         failure: @escaping (Error?) -> Void = { _ in }) -> URLRequest? {
         client?.transfer(userId: userId,
                          fromAccountId: fromAccountId,
                          toAccountId: toAccountId,

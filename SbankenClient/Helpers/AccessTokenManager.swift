@@ -13,7 +13,7 @@ public class AccessTokenManager {
     
     public init() { }
     
-    var token: AccessToken? {
+    public var token: AccessToken? {
         get {
             if _token != nil && _token!.expiryDate < Date() {
                 _token = nil
