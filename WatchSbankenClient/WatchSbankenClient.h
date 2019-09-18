@@ -2,11 +2,11 @@
 //  WatchSbankenClient.h
 //  WatchSbankenClient
 //
-//  Created by Terje Tjervaag on 08/10/2017.
-//  Copyright © 2017 SBanken. All rights reserved.
+//  Created by Terje Tjervaag on 18/09/2019.
+//  Copyright © 2019 SBanken. All rights reserved.
 //
 
-#import <WatchKit/WatchKit.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for WatchSbankenClient.
 FOUNDATION_EXPORT double WatchSbankenClientVersionNumber;
