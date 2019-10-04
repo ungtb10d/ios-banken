@@ -31,6 +31,8 @@ class SbankenClientTransactionsTests: XCTestCase {
             "transactionTypeCode": 946,
             "transactionTypeText": "",
             "isReservation": true,
+            "reservationType": "type",
+            "source": "source",
             "cardDetailsSpecified": false
         },
         {
@@ -43,6 +45,8 @@ class SbankenClientTransactionsTests: XCTestCase {
             "transactionTypeCode": 714,
             "transactionTypeText": "VISA VARE",
             "isReservation": false,
+            "reservationType": "type",
+            "source": "source",
             "reservationType": null,
             "source": 1,
             "cardDetails": {
