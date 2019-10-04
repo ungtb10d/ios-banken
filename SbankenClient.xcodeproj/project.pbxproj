@@ -32,6 +32,15 @@
 		8BA9EAB1205FD63500677F16 /* CardDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA9EAB0205FD63500677F16 /* CardDetails.swift */; };
 		DF793C62200E2FA400BD8800 /* SbankenClientTransferTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF793C61200E2FA400BD8800 /* SbankenClientTransferTests.swift */; };
 		EB2E2F51218B08EE00CC2AEE /* ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2E2F50218B08EE00CC2AEE /* ClientError.swift */; };
+		EBC9A6CC2347564600B3808F /* CardsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC9A6CB2347564600B3808F /* CardsResponse.swift */; };
+		EBC9A6CD2347564600B3808F /* CardsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC9A6CB2347564600B3808F /* CardsResponse.swift */; };
+		EBC9A6CF234757E200B3808F /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC9A6CE234757E200B3808F /* Card.swift */; };
+		EBC9A6D0234757E200B3808F /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC9A6CE234757E200B3808F /* Card.swift */; };
+		EBC9A6D32347597900B3808F /* CardStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC9A6D22347597900B3808F /* CardStatus.swift */; };
+		EBC9A6D42347597900B3808F /* CardStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC9A6D22347597900B3808F /* CardStatus.swift */; };
+		EBC9A6D623475DD300B3808F /* CardProductCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC9A6D523475DD300B3808F /* CardProductCode.swift */; };
+		EBC9A6D723475DD300B3808F /* CardProductCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC9A6D523475DD300B3808F /* CardProductCode.swift */; };
+		EBC9A6D9234773D600B3808F /* SbankenClientCardsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC9A6D8234773D600B3808F /* SbankenClientCardsTests.swift */; };
 		EBCCE2C92332272400F0B3AE /* WatchSbankenClient.h in Headers */ = {isa = PBXBuildFile; fileRef = EBCCE2C72332272400F0B3AE /* WatchSbankenClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EBCCE2CD2332277400F0B3AE /* SURLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13074D1A1F9081A800427720 /* SURLSessionProtocol.swift */; };
 		EBCCE2CE2332277400F0B3AE /* String+urlParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130FF6401F8A09DD00D25F48 /* String+urlParameters.swift */; };
@@ -91,6 +100,11 @@
 		8BA9EAB0205FD63500677F16 /* CardDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetails.swift; sourceTree = "<group>"; };
 		DF793C61200E2FA400BD8800 /* SbankenClientTransferTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SbankenClientTransferTests.swift; sourceTree = "<group>"; };
 		EB2E2F50218B08EE00CC2AEE /* ClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientError.swift; sourceTree = "<group>"; };
+		EBC9A6CB2347564600B3808F /* CardsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsResponse.swift; sourceTree = "<group>"; };
+		EBC9A6CE234757E200B3808F /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		EBC9A6D22347597900B3808F /* CardStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStatus.swift; sourceTree = "<group>"; };
+		EBC9A6D523475DD300B3808F /* CardProductCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CardProductCode.swift; path = SbankenClient/Enums/CardProductCode.swift; sourceTree = SOURCE_ROOT; };
+		EBC9A6D8234773D600B3808F /* SbankenClientCardsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SbankenClientCardsTests.swift; sourceTree = "<group>"; };
 		EBCCE2C52332272400F0B3AE /* WatchSbankenClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WatchSbankenClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBCCE2C72332272400F0B3AE /* WatchSbankenClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WatchSbankenClient.h; sourceTree = "<group>"; };
 		EBCCE2C82332272400F0B3AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -159,6 +173,8 @@
 				8B580FF21FCC9AC80079A2BC /* AccessToken.swift */,
 				8B580FF81FCCA3AD0079A2BC /* TransferResponse.swift */,
 				8B580FFB1FCCA63C0079A2BC /* TransferRequest.swift */,
+				EBC9A6CB2347564600B3808F /* CardsResponse.swift */,
+				EBC9A6CE234757E200B3808F /* Card.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -188,6 +204,7 @@
 		138E9E521F88F7D3000F8A2E /* SbankenClient */ = {
 			isa = PBXGroup;
 			children = (
+				EBC9A6D12347596C00B3808F /* Enums */,
 				13074D191F90819000427720 /* Protocols */,
 				130FF63F1F8A09CC00D25F48 /* Extensions */,
 				13DDFDB01F892454009811A7 /* Helpers */,
@@ -209,6 +226,7 @@
 				1331C1021F9287AF00484590 /* SbankenClientTransactionsTests.swift */,
 				DF793C61200E2FA400BD8800 /* SbankenClientTransferTests.swift */,
 				137E7F381F9344A2000377F8 /* SbankenClientAccessTokenTests.swift */,
+				EBC9A6D8234773D600B3808F /* SbankenClientCardsTests.swift */,
 				134AF42B1F8BF7AB00114652 /* AccessTokenManagerTests.swift */,
 				13ED8FF21F8D55DE00D8A7D0 /* DoubleShortDisplayValueTests.swift */,
 				138E9E601F88F7D3000F8A2E /* Info.plist */,
@@ -238,6 +256,15 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EBC9A6D12347596C00B3808F /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				EBC9A6D22347597900B3808F /* CardStatus.swift */,
+				EBC9A6D523475DD300B3808F /* CardProductCode.swift */,
+			);
+			path = Enums;
 			sourceTree = "<group>";
 		};
 		EBCCE2C62332272400F0B3AE /* WatchSbankenClient */ = {
@@ -426,7 +453,10 @@
 				137A2B711F88FA54003BDEAC /* Account.swift in Sources */,
 				13DDFDAC1F8921EF009811A7 /* Transaction.swift in Sources */,
 				131491F11F8C9098000B91C2 /* TransactionResponse.swift in Sources */,
+				EBC9A6D32347597900B3808F /* CardStatus.swift in Sources */,
 				8B580FFC1FCCA63C0079A2BC /* TransferRequest.swift in Sources */,
+				EBC9A6CF234757E200B3808F /* Card.swift in Sources */,
+				EBC9A6CC2347564600B3808F /* CardsResponse.swift in Sources */,
 				8B580FF51FCC9C090079A2BC /* AccountsResponse.swift in Sources */,
 				8B580FF91FCCA3AD0079A2BC /* TransferResponse.swift in Sources */,
 				8B580FF31FCC9AC80079A2BC /* AccessToken.swift in Sources */,
@@ -435,6 +465,7 @@
 				13074D1B1F9081A800427720 /* SURLSessionProtocol.swift in Sources */,
 				1355DF111F8D54AA005D4523 /* Double+shortDisplayValue.swift in Sources */,
 				137A2B731F88FCC2003BDEAC /* Constants.swift in Sources */,
+				EBC9A6D623475DD300B3808F /* CardProductCode.swift in Sources */,
 				130FF6411F8A09DD00D25F48 /* String+urlParameters.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -448,6 +479,7 @@
 				13FEBABC1F8FEDB6004526E0 /* MockError.swift in Sources */,
 				DF793C62200E2FA400BD8800 /* SbankenClientTransferTests.swift in Sources */,
 				134AF42C1F8BF7AB00114652 /* AccessTokenManagerTests.swift in Sources */,
+				EBC9A6D9234773D600B3808F /* SbankenClientCardsTests.swift in Sources */,
 				137E7F391F9344A2000377F8 /* SbankenClientAccessTokenTests.swift in Sources */,
 				138E9E5F1F88F7D3000F8A2E /* SbankenClientAccountsTests.swift in Sources */,
 				13ED8FF31F8D55DE00D8A7D0 /* DoubleShortDisplayValueTests.swift in Sources */,
@@ -463,7 +495,10 @@
 				EBCCE2CF2332277400F0B3AE /* Double+shortDisplayValue.swift in Sources */,
 				EBCCE2D02332277400F0B3AE /* AccessTokenManager.swift in Sources */,
 				EBCCE2D12332277400F0B3AE /* Account.swift in Sources */,
+				EBC9A6D42347597900B3808F /* CardStatus.swift in Sources */,
 				EBCCE2D22332277400F0B3AE /* AccountsResponse.swift in Sources */,
+				EBC9A6D0234757E200B3808F /* Card.swift in Sources */,
+				EBC9A6CD2347564600B3808F /* CardsResponse.swift in Sources */,
 				EBCCE2D32332277400F0B3AE /* Transaction.swift in Sources */,
 				EBCCE2D42332277400F0B3AE /* TransactionResponse.swift in Sources */,
 				EBCCE2D52332277400F0B3AE /* CardDetails.swift in Sources */,
@@ -472,6 +507,7 @@
 				EBCCE2D82332277400F0B3AE /* TransferRequest.swift in Sources */,
 				EBCCE2D92332277400F0B3AE /* SbankenClient.swift in Sources */,
 				EBCCE2DA2332277400F0B3AE /* Constants.swift in Sources */,
+				EBC9A6D723475DD300B3808F /* CardProductCode.swift in Sources */,
 				EBCCE2DB2332277400F0B3AE /* ClientError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

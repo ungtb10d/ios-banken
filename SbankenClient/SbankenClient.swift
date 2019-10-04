@@ -16,7 +16,34 @@ open class SbankenClient: NSObject {
     public var urlSession: SURLSessionProtocol = URLSession.shared
     public var decoder: JSONDecoder = {
         let jsonDecoder = JSONDecoder()
-        jsonDecoder.dateDecodingStrategy = .iso8601
+        
+        jsonDecoder.dateDecodingStrategy = .custom({ decoder -> Date in
+            let container = try decoder.singleValueContainer()
+            let dateString = try container.decode(String.self)
+            let length = dateString.count
+            
+            var date: Date?
+            if length == 19 {
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+                formatter.calendar = Calendar(identifier: .iso8601)
+                formatter.timeZone = TimeZone(secondsFromGMT: 0)
+                formatter.locale = Locale(identifier: "en_US_POSIX")
+                date = formatter.date(from: dateString)
+            } else {
+                date = ISO8601DateFormatter().date(from: dateString)
+            }
+            
+            guard date != nil else {
+                throw DecodingError.dataCorruptedError(in: container, debugDescription: "Cannot decode date string \(dateString)")
+            }
+            
+            return date!
+        })
+        
+        // 19
+        // 2021-04-01T00:00:00
+        //jsonDecoder.dateDecodingStrategy = .iso8601
         return jsonDecoder
     }()
     public var encoder: JSONEncoder = {
@@ -57,6 +84,41 @@ open class SbankenClient: NSObject {
                     success(accountsResponse.items)
                 } else {
                     failure(ClientError.responseDecodingFailed, "Could not decode AccountsResponse")
+                }
+            }).resume()
+        }
+    }
+    
+    public func cards(userId: String,
+                      success: @escaping ([Card]) -> Void,
+                      failure: @escaping (Error?, String?) -> Void) {
+        accessToken(clientId: clientId, secret: secret) { (token) in
+            guard token != nil else {
+                failure(ClientError.invalidToken, "Invalid or expired token")
+                return
+            }
+            
+            guard let baseUrl = self.baseUrl else {
+                failure(ClientError.baseUrlNotSet, "BaseURL not set")
+                return
+            }
+            
+            let urlString = "\(baseUrl)/exec.bank/api/v1/Cards"
+            guard var request = self.urlRequest(urlString, token: token!) else { return }
+            request.setValue(userId, forHTTPHeaderField: "CustomerID")
+            
+            self.urlSession.dataTask(with: request, completionHandler: { (data, _, error) in
+                guard data != nil, error == nil else {
+                    failure(error, "Requst failed or empty response")
+                    return
+                }
+                
+                self.decoder.dataDecodingStrategy = .deferredToData
+                
+                if let response = try? self.decoder.decode(CardsResponse.self, from: data!) {
+                    success(response.items)
+                } else {
+                    failure(ClientError.responseDecodingFailed, "Could not decode CardsResponse")
                 }
             }).resume()
         }
