@@ -35,7 +35,9 @@ open class SbankenClient: NSObject {
             }
             
             guard date != nil else {
-                throw DecodingError.dataCorruptedError(in: container, debugDescription: "Cannot decode date string \(dateString)")
+                throw DecodingError.dataCorruptedError(
+                    in: container,
+                    debugDescription: "Cannot decode date string \(dateString)")
             }
             
             return date!
