@@ -9,7 +9,7 @@
 import Foundation
 
 public struct EFakturaResponse: Codable {
-    public var item: [EFaktura]
+    public var item: EFaktura
     
     public var errorType: String?
     public var isError: Bool

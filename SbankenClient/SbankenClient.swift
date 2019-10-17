@@ -43,15 +43,6 @@ open class SbankenClient: NSObject {
             return date!
         })
         
-        // 19
-        // 2021-04-01T00:00:00
-        //jsonDecoder.dateDecodingStrategy = .iso8601
-        return jsonDecoder
-    }()
-    var fakturaDecoder: JSONDecoder = {
-        let jsonDecoder = JSONDecoder()
-        jsonDecoder.dateDecodingStrategy = .iso8601
-        //jsonDecoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
         return jsonDecoder
     }()
     var encoder: JSONEncoder = {
@@ -243,7 +234,7 @@ open class SbankenClient: NSObject {
                 return
             }
 
-            let urlString = "\(Constants.baseUrl)/Bank/api/v1/EFakturas/\(eFakturaId)"
+            let urlString = "\(Constants.baseUrl)/exec.bank/api/v1/EFakturas/\(eFakturaId)"
             
             guard var request = RequestHelper.urlRequest(urlString,
                                                          token: token!,
@@ -257,7 +248,7 @@ open class SbankenClient: NSObject {
                     return
                 }
                 
-                if let eFakturaResponse = try? self.fakturaDecoder.decode(EFakturaResponse.self, from: data!) {
+                if let eFakturaResponse = try? self.decoder.decode(EFakturaResponse.self, from: data!) {
                     if eFakturaResponse.isError {
                         failure(nil)
                     } else {
@@ -284,7 +275,7 @@ open class SbankenClient: NSObject {
                 return
             }
 
-            let urlString = "\(Constants.baseUrl)/Bank/api/v1/EFakturas"
+            let urlString = "\(Constants.baseUrl)/exec.bank/api/v1/EFakturas"
             let formatter = ISO8601DateFormatter()
             let parameters = [
                 "index": "\(index)",
@@ -300,13 +291,13 @@ open class SbankenClient: NSObject {
 
             request.setValue(userId, forHTTPHeaderField: "CustomerID")
 
-            self.urlSession.dataTask(with: request, completionHandler: { (data, _, error) in
+            self.urlSession.dataTask(with: request, completionHandler: { (data, huh, error) in
                 guard data != nil, error == nil else {
                     failure(error)
                     return
                 }
                 
-                if let eFakturasResponse = try? self.fakturaDecoder.decode(EFakturasResponse.self, from: data!) {
+                if let eFakturasResponse = try? self.decoder.decode(EFakturasResponse.self, from: data!) {
                     if eFakturasResponse.isError {
                         failure(nil)
                     } else {
@@ -331,7 +322,7 @@ open class SbankenClient: NSObject {
                 return
             }
             
-            let urlString = "\(Constants.baseUrl)/Bank/api/v1/EFakturas"
+            let urlString = "\(Constants.baseUrl)/exec.bank/api/v1/EFakturas"
             guard var request = RequestHelper.urlRequest(urlString,
                                                          token: token!) else { return }
             
