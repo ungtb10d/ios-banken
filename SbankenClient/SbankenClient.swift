@@ -45,12 +45,12 @@ open class SbankenClient: NSObject {
         
         return jsonDecoder
     }()
-    var encoder: JSONEncoder = {
+    public var encoder: JSONEncoder = {
         let jsonEncoder = JSONEncoder()
         return jsonEncoder
     }()
 
-    public init(clientId: String, secret: String) {
+    public init(clientId: String?, secret: String?) {
         self.clientId = clientId
         self.secret = secret
     }
