@@ -232,6 +232,43 @@ open class SbankenClient: NSObject {
             }).resume()
         }
     }
+    
+    public func efaktura(userId: String,
+                         eFakturaId: String,
+                         success: @escaping (EFakturaResponse) -> Void,
+                         failure: @escaping (Error?) -> Void) {
+        accessToken(clientId: clientId, secret: secret) { (token) in
+            guard token != nil else {
+                failure(nil)
+                return
+            }
+
+            let urlString = "\(Constants.baseUrl)/Bank/api/v1/EFakturas/\(eFakturaId)"
+            
+            guard var request = RequestHelper.urlRequest(urlString,
+                                                         token: token!,
+                                                         parameters: [:]) else { return }
+
+            request.setValue(userId, forHTTPHeaderField: "CustomerID")
+
+            self.urlSession.dataTask(with: request, completionHandler: { (data, _, error) in
+                guard data != nil, error == nil else {
+                    failure(error)
+                    return
+                }
+                
+                if let eFakturaResponse = try? self.fakturaDecoder.decode(EFakturaResponse.self, from: data!) {
+                    if eFakturaResponse.isError {
+                        failure(nil)
+                    } else {
+                        success(eFakturaResponse)
+                    }
+                } else {
+                    failure(nil)
+                }
+            }).resume()
+        }
+    }
 
     public func eFakturas(userId: String,
                           startDate: Date,
