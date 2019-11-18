@@ -235,10 +235,12 @@ open class SbankenClient: NSObject {
         return request
     }
     
-    public func urlRequest(_ urlString: String, token: AccessToken) -> URLRequest? {
+    public func urlRequest(_ urlString: String, token: AccessToken?) -> URLRequest? {
         guard let url = URL(string: urlString) else { return nil }
         var request = URLRequest(url: url)
-        request.setValue("Bearer \(token.accessToken)", forHTTPHeaderField: "Authorization")
+        if token != nil {
+            request.setValue("Bearer \(token!.accessToken)", forHTTPHeaderField: "Authorization")
+        }
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         
         return request
