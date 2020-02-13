@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Account: Codable {
+open class Account: Codable {
     public let accountId: String
     public let accountNumber: String
     public let ownerCustomerId: String
