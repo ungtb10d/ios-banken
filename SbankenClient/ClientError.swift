@@ -14,4 +14,6 @@ public enum ClientError: Error {
     case responseDecodingFailed
     case errorResponse
     case baseUrlNotSet
+    case nilSession
+    case unknown
 }
