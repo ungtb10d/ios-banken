@@ -29,7 +29,7 @@ public class AccessToken: Codable {
         guard let expiresAt = self.expiresAt else {
             return false
         }
-        return Date() < expiresAt ? true : false
+        return Date() < expiresAt ? false : true
     }
     
     enum CodingKeys: String, CodingKey {
