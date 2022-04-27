@@ -635,7 +635,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
@@ -782,7 +782,7 @@
 				138E9E631F88F7D3000F8A2E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		138E9E641F88F7D3000F8A2E /* Build configuration list for PBXNativeTarget "SbankenClient" */ = {
 			isa = XCConfigurationList;
@@ -791,7 +791,7 @@
 				138E9E661F88F7D3000F8A2E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		138E9E671F88F7D3000F8A2E /* Build configuration list for PBXNativeTarget "SbankenClientTests" */ = {
 			isa = XCConfigurationList;
@@ -800,7 +800,7 @@
 				138E9E691F88F7D3000F8A2E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		EBCCE2CA2332272400F0B3AE /* Build configuration list for PBXNativeTarget "WatchSbankenClient" */ = {
 			isa = XCConfigurationList;
@@ -809,7 +809,7 @@
 				EBCCE2CC2332272400F0B3AE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
